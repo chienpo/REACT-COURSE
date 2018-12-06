@@ -112,7 +112,8 @@ class Navigation extends React.Component {
         return(
             <>
                 <BurgerMenu
-                    onClick={this.toggleMenu}>X</BurgerMenu>
+                    onClick={this.toggleMenu}
+                >X</BurgerMenu>
                     
                 {this.state.menuIsOpened && this.renderMenu()}
             </>

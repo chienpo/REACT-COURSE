@@ -27,14 +27,10 @@ const Preloader = styled.div`
     animation: spin .4s linear infinite;
 `
 
-class Spinner extends React.Component {
-    render() {
-        return(
-            <Loader>
-                <Preloader />
-            </Loader>
-        )
-    }
-}
+const Spinner = () => (
+    <Loader>
+        <Preloader />
+    </Loader>
+)
 
 export default Spinner
