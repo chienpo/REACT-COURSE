@@ -102,8 +102,12 @@ class Navigation extends React.Component {
                 <Link to='/task-one'>TaskOne</Link>
             </NavigationItem>
             <NavigationItem
+                onClick={this.toggleMenu}>
+                <Link to='/task-two'>TaskTwo</Link>
+            </NavigationItem>
+            <NavigationItem
                 className='not-ready'>
-                <Link to='/task-two'  onClick={e => e.preventDefault()}>TaskTwo</Link>
+                <Link to='/task-three'  onClick={e => e.preventDefault()}>TaskTwo</Link>
             </NavigationItem>
         </Menu>
     )
