@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Transmission = (props) => (
+const Transmission = (props: any) => (
     <div>
         <h2>Transmission</h2>
         <label>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Model = (props) => (
+const Model = (props: any) => (
     <div>
         <h2>Model</h2>
         

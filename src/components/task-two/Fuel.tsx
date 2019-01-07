@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Fuel = (props) => (
+const Fuel = (props: any) => (
     <div>
         <h2>Fuel</h2>
         <label>

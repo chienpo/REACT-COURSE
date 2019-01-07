@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Brand = (props) => (
+const Brand = (props: any) => (
     <div>
         <h2>Brand</h2>
         <label>
