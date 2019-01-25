@@ -1,0 +1,6 @@
+export const PLUS = 'PLUS'
+export const MINUS = 'MINUS'
+export const TIMES = 'TIMES'
+export const DIV = 'DIV'
+export const AC = 'AC'
+export const EQUALS = '='
