@@ -8,11 +8,13 @@ import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './App';
-import carFilterReducer from './store/reducers/carFilter'
+import carFilterReducer from './store/reducers/carFilter';
+import authReducer from './store/reducers/auth';
 
 
 const rootReduser = combineReducers({
-    carFilter: carFilterReducer
+    carFilters: carFilterReducer,
+    auth: authReducer
 });
 
 const store = createStore(rootReduser, composeWithDevTools(
@@ -25,6 +27,6 @@ const app = (
             <App />
         </BrowserRouter>
     </Provider>
-)
+);
 
 ReactDOM.render(app, document.getElementById('root'));

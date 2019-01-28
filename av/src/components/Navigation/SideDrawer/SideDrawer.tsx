@@ -16,6 +16,8 @@ import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import MessageIcon from '@material-ui/icons/Message';
 
+import { Link } from 'react-router-dom';
+
 import ProfileAvatar from '../../ProfileAvatar/ProfileAvatar'
 
 const styles = {
@@ -44,6 +46,8 @@ class SideDrawer extends React.Component<{classes: any}> {
         const sideList = (
             <div className={classes.list}>
                 <ProfileAvatar />
+                <Link to="/auth">Войти</Link>
+
                 <Divider />
 
                 <List>

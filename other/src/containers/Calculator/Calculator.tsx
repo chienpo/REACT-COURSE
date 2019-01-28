@@ -6,27 +6,24 @@ import { Page, Section } from '../../components/UI/styled'
 import { CalculatorWrapper} from '../../components/calculator/styled'
 import CalculatorButtons from '../../components/calculator/CalculatorButtons'
 import CalculatorScreen from '../../components/calculator/CalculatorScreen'
-import * as actionTypes from '../../store/actions';
-import calculate from '../../components/calculator/Calculate'
+import buttonClick from '../../store/actions'
+
+interface IButtonClick { type: any, payload: { buttonName: string }}
 
 interface ITaskOneState {
-    tot: null | 'string',
-    oper: null | 'string',
-    nxt: null | 'string',
+    tot: any,
+    oper: any,
+    nxt: any,
     handleClick(name: string): void,
 }
 
-class Calculator extends React.Component  <ITaskOneState> {
 
-    state = {
-        operation: '',
-        next: '',
-        total: ''
-    }
-    
-    handleClick = (buttonName: string) => {
-        this.setState(calculate(this.state, buttonName) as ITaskOneState)
-    }
+
+class Calculator extends React.Component  <{dispatch: any, calc: any, buttonClick: any}, ITaskOneState, IButtonClick> {
+
+    handleClick = (buttonName: any) => {
+        this.props.buttonClick(buttonName)
+    };
 
     render() {
         return (
@@ -35,7 +32,7 @@ class Calculator extends React.Component  <ITaskOneState> {
                 <Section>
                     <CalculatorWrapper>
                         <CalculatorScreen
-                            value={this.state.next || this.state.total || '0'}
+                            value={this.props.calc.next || this.props.calc.total || '0'}
                         />
                         <CalculatorButtons
                             clickHandler={this.handleClick}
@@ -47,19 +44,18 @@ class Calculator extends React.Component  <ITaskOneState> {
     }
 }
 
-// const mapStateToProps = (state: any) => {
-//     return {
-//         tot: state.tot.total,
-//         oper: state.oper.operation,
-//         nxt: state.nxt.next
-//     }
-// }
+const mapStateToProps = (state: any) => {
+    return {
+        calc: state.calc
+    }
+};
 
-// const mapDispatchToProps = (dispatch: any) => {
-//     return {
-//         handleClick: () => dispatch({type: actionTypes.AC, buttonName})
-//     }
-// }
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        buttonClick: (buttonName: any) => {
+            dispatch(buttonClick(buttonName))
+        }
+    }
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Calculator)
-export default Calculator
+export default connect<{}>(mapStateToProps, mapDispatchToProps)(Calculator)
