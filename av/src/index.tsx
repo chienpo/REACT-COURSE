@@ -24,7 +24,7 @@ const store = createStore(rootReduser, composeWithDevTools(
 const app = (
     <Provider store={store}>
         <BrowserRouter>
-            <App />
+            <App children isAuth />
         </BrowserRouter>
     </Provider>
 );

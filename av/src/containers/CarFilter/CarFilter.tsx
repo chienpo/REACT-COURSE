@@ -1,20 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Filter from '../../components/Filter/Filter';
 
-import FilterAppBar from "../../components/Navigation/FilterAppBar/FilterAppBar";
-import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import Filter from "../../components/Filter/Filter";
+const styles = {
+    authWrapper: {
+        width: '100%',
+    },
+    drawerPaper: {
+        width: '100%'
+    }
+};
 
-class CarFilter extends React.Component {
-
-    render () {
+class CarFilter extends React.Component<{props: any}> {
+    render() {
         return (
-            <section>
-                <FilterAppBar />
-                <SideDrawer />
-                <Filter props={true} />
-            </section>
-        )
+            <Filter props={true} />
+        );
     }
 }
 
-export default CarFilter
+export default withStyles(styles)(CarFilter);

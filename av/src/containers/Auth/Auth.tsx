@@ -9,7 +9,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+import Snackbar from '@material-ui/core/Snackbar';
 
+import CircularProgress from '../../components/UI/Spinner/CircularProgress'
 
 const styles: any = (theme: any) => ({
     textField: {
@@ -30,13 +32,15 @@ interface IAuthState {
     isSignIn: boolean;
     email: string;
     password: string;
+    openSnackbar: boolean;
 }
 
-class Auth extends React.Component<{classes: any, onAuth: any}, IAuthState> {
+class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean, error: any}, IAuthState> {
     state = {
         isSignIn: true,
         email: '',
-        password: ''
+        password: '',
+        openSnackbar: true
     };
 
     submitHandler = (event: React.FormEvent<{}>) => {
@@ -67,84 +71,116 @@ class Auth extends React.Component<{classes: any, onAuth: any}, IAuthState> {
         const { classes } = this.props;
         const { isSignIn } = this.state;
 
-        return(
-            <div className={classes.root}>
-                <Grid container spacing={24}>
-                    <Grid item xs={6} sm={6}>
-                        {isSignIn ? (
-                            <Paper className={classes.paper}>
-                                <h1>AV.BY</h1>
-                                <h2>Вход</h2>
-                            </Paper>
-                        ) : (
-                            <Paper className={classes.paper}>
-                                <h1>AV.BY</h1>
-                                <h2>Регистрация</h2>
-                            </Paper>
-                        )}
-                        <Paper className={classes.paper}>
-                            <form
-                                noValidate
-                                autoComplete="on"
-                                onSubmit={this.submitHandler}
-                            >
-                                <TextField
-                                    id="filled-required"
-                                    label="Required"
-                                    margin="normal"
-                                    variant="filled"
-                                    name="email"
-                                />
-                                <TextField
-                                    id="filled-password-input"
-                                    label="Password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    margin="normal"
-                                    variant="filled"
-                                    name="password"
-                                />
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                    type='submit'
-                                >
-                                    {isSignIn ? 'Войти на сайт' : 'Регистрация'}
-                                </Button>
+        if (this.props.loading) {
+            return <CircularProgress />
+        }
 
-                                {!isSignIn && (
-                                    <>
-                                        <p>
-                                            Я принимаю условия пользовательского соглашения
-                                            и даю свое согласие на обработку персональных данных
-                                        </p>
-                                    </>
-                                )}
-                            </form>
-                            {isSignIn && (<Link to="/auth">Забыли пароль?</Link>)}
-                        </Paper>
-                        {isSignIn ? (
+        return(
+           <>
+               <Snackbar
+                   anchorOrigin={{
+                       vertical: 'bottom',
+                       horizontal: 'left',
+                   }}
+                   open={!!this.props.error && this.state.openSnackbar}
+                   autoHideDuration={3000}
+                   onClose={(event: any, reason: any) => {
+                       if (reason === 'clickaway') {
+                           return;
+                       }
+                       this.setState({ openSnackbar: false });
+                   }}
+                   ContentProps={{
+                       'aria-describedby': 'message-id',
+                   }}
+                   message={<span id="message-id">{this.props.error && this.props.error.message}</span>}
+                />
+
+                <div className={classes.root}>
+                    <Grid container spacing={24}>
+                        <Grid item xs={6} sm={6}>
+                            {isSignIn ? (
+                                <Paper className={classes.paper}>
+                                    <h1>AV.BY</h1>
+                                    <h2>Вход</h2>
+                                </Paper>
+                            ) : (
+                                <Paper className={classes.paper}>
+                                    <h1>AV.BY</h1>
+                                    <h2>Регистрация</h2>
+                                </Paper>
+                            )}
                             <Paper className={classes.paper}>
-                                <div>Первый раз на сайте?</div>
-                                <a onClick={this.switchAuthModeHandler}>
-                                    Регистрация
-                                </a>
+                                <form
+                                    noValidate
+                                    autoComplete="on"
+                                    onSubmit={this.submitHandler}
+                                >
+                                    <TextField
+                                        id="filled-required"
+                                        label="Required"
+                                        margin="normal"
+                                        variant="filled"
+                                        name="email"
+                                    />
+                                    <TextField
+                                        id="filled-password-input"
+                                        label="Password"
+                                        type="password"
+                                        autoComplete="current-password"
+                                        margin="normal"
+                                        variant="filled"
+                                        name="password"
+                                    />
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        className={classes.button}
+                                        type='submit'
+                                    >
+                                        {isSignIn ? 'Войти на сайт' : 'Регистрация'}
+                                    </Button>
+
+                                    {!isSignIn && (
+                                        <>
+                                            <p>
+                                                Я принимаю условия пользовательского соглашения
+                                                и даю свое согласие на обработку персональных данных
+                                            </p>
+                                        </>
+                                    )}
+                                </form>
+                                {isSignIn && (<Link to="/auth">Забыли пароль?</Link>)}
                             </Paper>
-                        ) : (
-                            <Paper className={classes.paper}>
-                                <div>Уже зарегистрированы?</div>
-                                <a onClick={this.switchAuthModeHandler}>
-                                    Вход
-                                </a>
-                            </Paper>
-                        )}
+                            {isSignIn ? (
+                                <Paper className={classes.paper}>
+                                    <div>Первый раз на сайте?</div>
+                                    <a onClick={this.switchAuthModeHandler}>
+                                        Регистрация
+                                    </a>
+                                </Paper>
+                            ) : (
+                                <Paper className={classes.paper}>
+                                    <div>Уже зарегистрированы?</div>
+                                    <a onClick={this.switchAuthModeHandler}>
+                                        Вход
+                                    </a>
+                                </Paper>
+                            )}
+                        </Grid>
                     </Grid>
-                </Grid>
-            </div>
+                </div>
+           </>
         )
     }
 }
+
+const mapStateToProps = (state: any) => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error
+    }
+};
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
@@ -152,4 +188,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Auth));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Auth));

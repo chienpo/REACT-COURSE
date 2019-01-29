@@ -1,12 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import ArrowBack from '@material-ui/icons/ArrowBackRounded';
 
 const styles = {
     root: {
@@ -21,28 +22,25 @@ const styles = {
     },
 };
 
-function FilterAppBar(props: any) {
+function AuthAppBar(props: any) {
     const { classes } = props;
 
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                        <MenuIcon />
-                    </IconButton>
+                    <Link to='/'>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                            <ArrowBack />
+                        </IconButton>
+                    </Link>
                     <Typography variant="h6" color="inherit" className={classes.grow}>
-                        Поиск автомобилей
+                        av.by
                     </Typography>
-                    <Button color="inherit">Сброс</Button>
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
 
-FilterAppBar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FilterAppBar);
+export default withStyles(styles)(AuthAppBar);

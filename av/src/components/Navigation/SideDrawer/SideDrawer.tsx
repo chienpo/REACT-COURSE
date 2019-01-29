@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,6 +14,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import MessageIcon from '@material-ui/icons/Message';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { Link } from 'react-router-dom';
 
@@ -29,7 +30,7 @@ const styles = {
     },
 };
 
-class SideDrawer extends React.Component<{classes: any}> {
+class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
     state = {
         left: false
     };
@@ -41,12 +42,27 @@ class SideDrawer extends React.Component<{classes: any}> {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, isAuth } = this.props;
 
         const sideList = (
             <div className={classes.list}>
-                <ProfileAvatar />
-                <Link to="/auth">Войти</Link>
+                {!isAuth
+                    ? <Link to="/auth"><ProfileAvatar />Войти</Link>
+                    : <Link to="/logout"><ProfileAvatar />Выйти</Link>
+                }
+
+                {isAuth && (
+                    <>
+                        <Divider />
+
+                        <List>
+                            <ListItem button>
+                                <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
+                                <ListItemText>Кабинет пользователя</ListItemText>
+                            </ListItem>
+                        </List>
+                    </>
+                )}
 
                 <Divider />
 
@@ -103,9 +119,19 @@ class SideDrawer extends React.Component<{classes: any}> {
 
         return (
             <div>
-                <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
+                <IconButton
+                    className={classes.menuButton}
+                    color="inherit"
+                    aria-label="Menu"
+                    onClick={this.toggleDrawer('left', true)}
+                >
+                    <MenuIcon />
+                </IconButton>
 
-                <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+                <Drawer
+                    open={this.state.left}
+                    onClose={this.toggleDrawer('left', false)}
+                >
                     <div
                         tabIndex={0}
                         role="button"

@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import styled from 'styled-components'
 
+import Layout from './hoc/Layout/Layout'
 import CarFilter from './containers/CarFilter/CarFilter'
 import Auth from './containers/Auth/Auth'
+import Logout from './containers/Auth/Logout/Logout';
 
-const Layout = styled.div`
-  * {
-    margin: 0;
-    padding: 0;
-  }
-`;
-
-class App extends Component {
+class App extends Component<{ children: any, isAuth: any }> {
   componentDidMount() {
     console.log('Hello in AV!');
   }
@@ -20,13 +14,14 @@ class App extends Component {
   render() {
     const routes = (
       <Switch>
-        <Route path="/" exact component={CarFilter} />
-        <Route path="/auth" component={Auth} />
+          <Route path="/auth" component={Auth} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/" exact component={CarFilter} />
       </Switch>
     );
 
     return (
-      <Layout>
+      <Layout isAuth>
         {routes}         
       </Layout>
     );
