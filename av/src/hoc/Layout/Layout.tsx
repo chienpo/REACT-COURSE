@@ -19,11 +19,11 @@ class Layout extends React.Component<IProps, ILayoutState> {
     render () {
         return (
             <>
-                {/*TODO: path sidedrawer inside navigation*/}
-                <FilterAppBar />
-                <SideDrawer
-                    isAuth={this.props.isAuthenticated}
-                />
+                <FilterAppBar>
+                    <SideDrawer
+                        isAuth={this.props.isAuthenticated}
+                    />
+                </FilterAppBar>
                 <main>
                     {this.props.children}
                 </main>

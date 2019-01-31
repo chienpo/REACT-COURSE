@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 
 import Snackbar from '@material-ui/core/Snackbar';
 
@@ -76,41 +77,54 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
         }
 
         return(
-           <>
-               <Snackbar
-                   anchorOrigin={{
-                       vertical: 'bottom',
-                       horizontal: 'left',
-                   }}
-                   open={!!this.props.error && this.state.openSnackbar}
-                   autoHideDuration={3000}
-                   onClose={(event: any, reason: any) => {
-                       if (reason === 'clickaway') {
-                           return;
-                       }
-                       this.setState({ openSnackbar: false });
-                   }}
-                   ContentProps={{
-                       'aria-describedby': 'message-id',
-                   }}
-                   message={<span id="message-id">{this.props.error && this.props.error.message}</span>}
-                />
+                <>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={!!this.props.error && this.state.openSnackbar}
+                        autoHideDuration={3000}
+                        onClose={(event: any, reason: any) => {
+                            if (reason === 'clickaway') {
+                                return;
+                            }
+                            this.setState({ openSnackbar: false });
+                        }}
+                        ContentProps={{
+                           'aria-describedby': 'message-id',
+                        }}
+                        message={<span id="message-id">{this.props.error && this.props.error.message}</span>}
+                    />
 
                 <div className={classes.root}>
-                    <Grid container spacing={24}>
-                        <Grid item xs={6} sm={6}>
+                    <Grid
+                        container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justify="center"
+                    >
+                        <Grid item xs={12} sm={12}>
                             {isSignIn ? (
-                                <Paper className={classes.paper}>
+                                <Paper
+                                    square
+                                    className={classes.paper}>
                                     <h1>AV.BY</h1>
                                     <h2>Вход</h2>
                                 </Paper>
                             ) : (
-                                <Paper className={classes.paper}>
+                                <Paper
+                                    square
+                                    className={classes.paper}>
                                     <h1>AV.BY</h1>
                                     <h2>Регистрация</h2>
                                 </Paper>
                             )}
-                            <Paper className={classes.paper}>
+                            <Paper
+                                square
+                                className={classes.paper}
+                            >
                                 <form
                                     noValidate
                                     autoComplete="on"
@@ -123,6 +137,7 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
                                         variant="filled"
                                         name="email"
                                     />
+                                    <Divider light />
                                     <TextField
                                         id="filled-password-input"
                                         label="Password"
@@ -132,6 +147,7 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
                                         variant="filled"
                                         name="password"
                                     />
+                                    <Divider light />
                                     <Button
                                         variant="contained"
                                         color="primary"
@@ -140,6 +156,7 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
                                     >
                                         {isSignIn ? 'Войти на сайт' : 'Регистрация'}
                                     </Button>
+                                    <Divider light />
 
                                     {!isSignIn && (
                                         <>

@@ -54,7 +54,6 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
                 {isAuth && (
                     <>
                         <Divider />
-
                         <List>
                             <ListItem button>
                                 <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
@@ -67,23 +66,33 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
                 <Divider />
 
                 <List>
-                    {['Поиск автомобилей', 'Добавить обьявление'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <DirectionsCarIcon /> : <AddCircleOutlineIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                    <Link to="/">
+                        <ListItem button>
+                            <ListItemIcon><DirectionsCarIcon /></ListItemIcon>
+                            <ListItemText>Поиск автомобилей</ListItemText>
                         </ListItem>
-                    ))}
+                    </Link>
+                    {isAuth && (
+                        <ListItem button>
+                            <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
+                            <ListItemText>Добавить обьявление</ListItemText>
+                        </ListItem>
+                    )}
                 </List>
                 <Divider />
-                <List>
-                    {['Мои обьявления', 'Закладки', 'Сообщения'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <MessageIcon /> : <TurnedInNotIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
+                {isAuth && (
+                    <>
+                        <List>
+                            {['Мои обьявления', 'Закладки', 'Сообщения'].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>{index % 2 === 0 ? <MessageIcon /> : <TurnedInNotIcon />}</ListItemIcon>
+                                    <ListItemText primary={text} />
+                                </ListItem>
+                            ))}
+                        </List>
+                        <Divider />
+                    </>
+                )}
                 <List>
                     {['Сообщить о проблеме', 'Оценить приложение'].map((text, index) => (
                         <ListItem button key={text}>

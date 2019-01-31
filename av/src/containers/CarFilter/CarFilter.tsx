@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Filter from '../../components/Filter/Filter';
+import SearchControls from '../../components/SearchEngine/SearchControls/SearchControls';
 
 const styles = {
     authWrapper: {
@@ -14,7 +14,7 @@ const styles = {
 class CarFilter extends React.Component<{props: any}> {
     render() {
         return (
-            <Filter props={true} />
+            <SearchControls props={true} />
         );
     }
 }

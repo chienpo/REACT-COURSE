@@ -25,6 +25,7 @@ function FilterAppBar(props: any) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
+                    { props.children }
                     <Typography variant="h6" color="inherit" className={classes.grow}>
                         Поиск автомобилей
                     </Typography>
