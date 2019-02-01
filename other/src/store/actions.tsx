@@ -1,8 +1,8 @@
 export const NUMBERS = 'NUMBERS';
 
-interface IButtonClick { type: any, payload: { buttonName: any }}
+interface IButtonClick { type: string, payload: { buttonName: string }}
 
-export function buttonClick(buttonName: any): IButtonClick {
+export function buttonClick(buttonName: string): IButtonClick {
   return {
     type: NUMBERS,
     payload: {

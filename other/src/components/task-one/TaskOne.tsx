@@ -10,6 +10,7 @@ interface ITaskOneState {
     loading: boolean;
     activeTab: string;
     articles: IArticle[];
+    errors: string;
 }
 
 interface IArticle {
@@ -29,11 +30,12 @@ const CATEGORIES: ICategories = {
     'GADGETS': 'gadgets'
 }
 
-class TaskOne extends React.Component  < {}, ITaskOneState> {
+class TaskOne extends React.Component  <{}, ITaskOneState> {
     state = {
         loading: false,
         activeTab: CATEGORIES.ECONOMY,
-        articles: []
+        articles: [],
+        errors: ''
     }
 
     componentDidMount() {
@@ -53,7 +55,12 @@ class TaskOne extends React.Component  < {}, ITaskOneState> {
                 articles: response.data,
                 loading: false
             })
-        } catch (e) { }
+        } catch (error) {
+            this.setState({
+                loading: true,
+                // error: error.response.data.message
+            })
+        }
     }
 
     render() {

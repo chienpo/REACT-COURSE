@@ -8,20 +8,20 @@ import CalculatorButtons from '../../components/calculator/CalculatorButtons'
 import CalculatorScreen from '../../components/calculator/CalculatorScreen'
 import buttonClick from '../../store/actions'
 
-interface IButtonClick { type: any, payload: { buttonName: string }}
+interface IButtonClick { type: string, payload: { buttonName: string }}
 
 interface ITaskOneState {
-    tot: any,
+    tot: string,
     oper: any,
-    nxt: any,
-    handleClick(name: string): void,
+    nxt: string,
+    handleClick(name: string): void
 }
 
 
 
 class Calculator extends React.Component  <{dispatch: any, calc: any, buttonClick: any}, ITaskOneState, IButtonClick> {
 
-    handleClick = (buttonName: any) => {
+    handleClick = (buttonName: string) => {
         this.props.buttonClick(buttonName)
     };
 
@@ -52,7 +52,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        buttonClick: (buttonName: any) => {
+        buttonClick: (buttonName: string) => {
             dispatch(buttonClick(buttonName))
         }
     }
