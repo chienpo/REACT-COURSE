@@ -5,6 +5,7 @@ import Layout from './hoc/Layout/Layout'
 import CarFilter from './containers/CarFilter/CarFilter'
 import Auth from './containers/Auth/Auth'
 import Logout from './containers/Auth/Logout/Logout';
+import NewAdvertisement from "./containers/NewAdvertisement/NewAdvertisement";
 
 class App extends Component<{ children: any, isAuth: any }> {
   componentDidMount() {
@@ -16,6 +17,7 @@ class App extends Component<{ children: any, isAuth: any }> {
       <Switch>
           <Route path="/auth" component={Auth} />
           <Route path="/logout" component={Logout} />
+          <Route path="/new-advertisement" component={NewAdvertisement} />
           <Route path="/" exact component={CarFilter} />
       </Switch>
     );

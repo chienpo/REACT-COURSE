@@ -75,7 +75,9 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
                     {isAuth && (
                         <ListItem button>
                             <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
-                            <ListItemText>Добавить обьявление</ListItemText>
+                            <Link to="/new-advertisement">
+                                <ListItemText>Добавить обьявление</ListItemText>
+                            </Link>
                         </ListItem>
                     )}
                 </List>
