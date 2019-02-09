@@ -15,6 +15,8 @@ import CircularProgress from "@material-ui/core/CircularProgress/CircularProgres
 import TextField from "@material-ui/core/TextField/TextField";
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 
+import { Field } from 'react-final-form'
+
 const styles: any = (theme: Theme) => ({
     container: {
         display: 'flex',
@@ -41,11 +43,11 @@ interface IList {
     map(elem: any): any
 }
 
-interface IAuthProps {
-    title: string;
+interface IDialogSelectProps {
+    title: any;
     options: IList;
     classes: any;
-    name: string;
+    name: any;
 }
 
 interface IDialogSelectState {
@@ -53,7 +55,7 @@ interface IDialogSelectState {
     value: string;
 }
 
-class DialogSelect extends React.Component<IAuthProps, IDialogSelectState> {
+class DialogSelect extends React.Component<IDialogSelectProps, IDialogSelectState> {
     state = {
         open: false,
         value: '',
@@ -73,73 +75,160 @@ class DialogSelect extends React.Component<IAuthProps, IDialogSelectState> {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, ...fieldProps } = this.props;
 
         return (
-            <FormControl className={classes.formControl}>
-                <InputLabel shrink required>
-                    {this.props.title}
-                </InputLabel>
-                <TextField
-                    margin="normal"
-                    variant="filled"
-                    className={classes.textField}
-                    name={this.props.name}
-                    value={this.state.value}
-                    onClick={this.handleClickOpen}
-                    InputProps={{
-                        endAdornment: <ArrowDropDown>Kg</ArrowDropDown>,
-                    }}
-                />
-                <Dialog
-                    disableBackdropClick
-                    disableEscapeKeyDown
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                >
-                    {!this.props.options
-                        ? (
-                            <CircularProgress />
-                        ) : (
-                            <>
-                                <DialogTitle>{this.props.title}</DialogTitle>
-                                <DialogContent>
-                                    <form className={classes.container}>
-                                        <FormControl className={classes.formControl}>
-                                            <RadioGroup
-                                                className={classes.formRadioGroup}
-                                                aria-label="position"
-                                                name="position"
-                                                value={this.state.value}
-                                                onChange={this.handleChange}
-                                                row
-                                            >
-                                                {this.props.options.map((elem: any) => (
-                                                    <FormControlLabel
-                                                        className={classes.formControlLabel}
-                                                        key={elem.value}
-                                                        value={elem.value}
-                                                        control={<Radio color="primary" />}
-                                                        label={elem.label}
-                                                        labelPlacement="end"
-                                                    />
-                                                ))}
-                                            </RadioGroup>
-                                        </FormControl>
-                                    </form>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={this.handleClose} color="primary">
-                                        Cancel
-                                    </Button>
-                                    <Button onClick={this.handleClose} color="primary">
-                                        Ok
-                                    </Button>
-                                </DialogActions>
-                            </>
-                        )}
-                </Dialog>
-            </FormControl>
+            <Field validateFields={[]} {...fieldProps}>
+                {({ input, meta, ...customProps }) => {
+                    const {onChange} = input;
+
+                    console.log(input.value);
+
+                    return (
+                        <FormControl className={classes.formControl}>
+                            <InputLabel shrink required>
+                                {this.props.title}
+                            </InputLabel>
+                            <TextField
+                                {...input}
+                                {...customProps}
+                                margin="normal"
+                                variant="filled"
+                                className={classes.textField}
+                                value={this.state.value}
+                                onClick={this.handleClickOpen}
+                                InputProps={{
+                                    endAdornment: <ArrowDropDown>Kg</ArrowDropDown>,
+                                }}
+                            />
+                            {meta.touched && meta.error && <span>{meta.error}</span>}
+                            <Dialog
+                                disableBackdropClick
+                                disableEscapeKeyDown
+                                open={this.state.open}
+                                onClose={this.handleClose}
+                            >
+                                {!this.props.options
+                                    ? (
+                                        <CircularProgress />
+                                    ) : (
+                                        <>
+                                            <DialogTitle>{this.props.title}</DialogTitle>
+                                            <DialogContent>
+                                                <form className={classes.container}>
+                                                    <FormControl className={classes.formControl}>
+                                                        <RadioGroup
+                                                            className={classes.formRadioGroup}
+                                                            aria-label="position"
+                                                            name="position"
+                                                            value={this.state.value}
+                                                            onChange={this.handleChange}
+                                                            row
+                                                        >
+                                                            {this.props.options.map((elem: any) => (
+                                                                <FormControlLabel
+                                                                    className={classes.formControlLabel}
+                                                                    key={elem.value}
+                                                                    value={elem.value}
+                                                                    control={<Radio color="primary" />}
+                                                                    label={elem.label}
+                                                                    labelPlacement="end"
+                                                                />
+                                                            ))}
+                                                        </RadioGroup>
+                                                    </FormControl>
+                                                </form>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={this.handleClose} color="primary">
+                                                    Cancel
+                                                </Button>
+                                                <Button onClick={this.handleClose} color="primary">
+                                                    Ok
+                                                </Button>
+                                            </DialogActions>
+                                        </>
+                                    )}
+                            </Dialog>
+                        </FormControl>
+                    )
+                }}
+            </Field>
+
+
+            // <Field validateFields={[]}  {...fieldProps}>
+            //     {({ meta, input, ...customProps }) => {
+            //
+            //         return (
+            //             <FormControl className={classes.formControl}>
+            //                 <InputLabel shrink required>
+            //                     {/*{this.props.title}*/}
+            //                 </InputLabel>
+            //                 <TextField
+            //                     {...input}
+            //                     {...customProps}
+            //                     margin="normal"
+            //                     variant="filled"
+            //                     className={classes.textField}
+            //                     value={this.state.value}
+            //                     onClick={this.handleClickOpen}
+            //                     InputProps={{
+            //                         endAdornment: <ArrowDropDown>Kg</ArrowDropDown>,
+            //                     }}
+            //                 />
+            //                 {meta.touched && meta.error && <span>{meta.error}</span>}
+            //                 <Dialog
+            //                     disableBackdropClick
+            //                     disableEscapeKeyDown
+            //                     open={this.state.open}
+            //                     onClose={this.handleClose}
+            //                 >
+            //                     {!this.props.options
+            //                         ? (
+            //                             <CircularProgress />
+            //                         ) : (
+            //                             <>
+            //                                 <DialogTitle>{this.props.title}</DialogTitle>
+            //                                 <DialogContent>
+            //                                     <form className={classes.container}>
+            //                                         <FormControl className={classes.formControl}>
+            //                                             <RadioGroup
+            //                                                 className={classes.formRadioGroup}
+            //                                                 aria-label="position"
+            //                                                 name="position"
+            //                                                 value={this.state.value}
+            //                                                 onChange={this.handleChange}
+            //                                                 row
+            //                                             >
+            //                                                 {this.props.options.map((elem: any) => (
+            //                                                     <FormControlLabel
+            //                                                         className={classes.formControlLabel}
+            //                                                         key={elem.value}
+            //                                                         value={elem.value}
+            //                                                         control={<Radio color="primary" />}
+            //                                                         label={elem.label}
+            //                                                         labelPlacement="end"
+            //                                                     />
+            //                                                 ))}
+            //                                             </RadioGroup>
+            //                                         </FormControl>
+            //                                     </form>
+            //                                 </DialogContent>
+            //                                 <DialogActions>
+            //                                     <Button onClick={this.handleClose} color="primary">
+            //                                         Cancel
+            //                                     </Button>
+            //                                     <Button onClick={this.handleClose} color="primary">
+            //                                         Ok
+            //                                     </Button>
+            //                                 </DialogActions>
+            //                             </>
+            //                         )}
+            //                 </Dialog>
+            //             </FormControl>
+            //         )
+            //     }}>
+            // </Field>
         );
     }
 }

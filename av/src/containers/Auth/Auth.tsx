@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Drawer from '@material-ui/core/Drawer';
 
 import * as actions from '../../store/actions/index'
 import TextField from '@material-ui/core/TextField';
@@ -9,10 +10,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-
 import Snackbar from '@material-ui/core/Snackbar';
-
 import CircularProgress from '../../components/UI/Spinner/CircularProgress'
+
+import AppMenu from '../../components/Navigation/AppBar/AppMenu';
+import Typography from '@material-ui/core/Typography';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles: any = (theme: any) => ({
     textField: {
@@ -21,12 +25,22 @@ const styles: any = (theme: any) => ({
     },
     root: {
         flexGrow: 1,
+        left: '0'
     },
     paper: {
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        boxShadow: 'none',
+        marginTop: '20px'
     },
+    appBarLink: {
+        color: 'white',
+        marginRight: '10px'
+    },
+    drawerPaper: {
+        width: '100%',
+    }
 });
 
 interface IAuthState {
@@ -34,6 +48,7 @@ interface IAuthState {
     email: string;
     password: string;
     openSnackbar: boolean;
+    right: boolean;
 }
 
 class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean, error: any}, IAuthState> {
@@ -41,7 +56,8 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
         isSignIn: true,
         email: '',
         password: '',
-        openSnackbar: true
+        openSnackbar: true,
+        right: false
     };
 
     submitHandler = (event: React.FormEvent<{}>) => {
@@ -68,6 +84,14 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
         });
     };
 
+    componentDidMount(): void {
+        this.setState({right: true})
+    }
+
+    componentWillUnmount(): void {
+        this.setState({right: false})
+    }
+
     render() {
         const { classes } = this.props;
         const { isSignIn } = this.state;
@@ -77,27 +101,30 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
         }
 
         return(
-                <>
-                    <Snackbar
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                        open={!!this.props.error && this.state.openSnackbar}
-                        autoHideDuration={3000}
-                        onClose={(event: any, reason: any) => {
-                            if (reason === 'clickaway') {
-                                return;
-                            }
-                            this.setState({ openSnackbar: false });
-                        }}
-                        ContentProps={{
-                           'aria-describedby': 'message-id',
-                        }}
-                        message={<span id="message-id">{this.props.error && this.props.error.message}</span>}
-                    />
-
+            <Drawer
+                anchor="right"
+                open={this.state.right}
+                elevation={1}
+                classes={{
+                    paper: classes.drawerPaper
+                }}
+            >
                 <div className={classes.root}>
+                    <AppMenu>
+                        <Link aria-label="Menu" className={classes.appBarLink} to="/">
+                            <IconButton
+                                type='button'
+                                className={classes.menuButton}
+                                color="inherit"
+                                aria-label="Menu"
+                            >
+                                <ArrowBack />
+                            </IconButton>
+                        </Link>
+                        <Typography variant="h6" color="inherit" className={classes.grow}>
+                            av.by
+                        </Typography>
+                    </AppMenu>
                     <Grid
                         container
                         spacing={0}
@@ -186,8 +213,27 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
                             )}
                         </Grid>
                     </Grid>
+
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={!!this.props.error && this.state.openSnackbar}
+                        autoHideDuration={3000}
+                        onClose={(event: any, reason: any) => {
+                            if (reason === 'clickaway') {
+                                return;
+                            }
+                            this.setState({ openSnackbar: false });
+                        }}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        message={<span id="message-id">{this.props.error && this.props.error.message}</span>}
+                    />
                 </div>
-           </>
+            </Drawer>
         )
     }
 }

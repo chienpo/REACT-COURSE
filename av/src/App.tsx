@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Layout from './hoc/Layout/Layout'
-import CarFilter from './containers/CarFilter/CarFilter'
+import SearchEngine from './containers/SearchEngine/SearchEngine'
 import Auth from './containers/Auth/Auth'
 import Logout from './containers/Auth/Logout/Logout';
 import NewAdvertisement from "./containers/NewAdvertisement/NewAdvertisement";
+import Advertisements from "./containers/Advertisements/Advertisements";
 
 class App extends Component<{ children: any, isAuth: any }> {
   componentDidMount() {
@@ -18,7 +19,8 @@ class App extends Component<{ children: any, isAuth: any }> {
           <Route path="/auth" component={Auth} />
           <Route path="/logout" component={Logout} />
           <Route path="/new-advertisement" component={NewAdvertisement} />
-          <Route path="/" exact component={CarFilter} />
+          <Route path="/advertisements" component={Advertisements} />
+          <Route path="/" exact component={SearchEngine} />
       </Switch>
     );
 

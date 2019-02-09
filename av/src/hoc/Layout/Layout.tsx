@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
 
-import FilterAppBar from '../../components/Navigation/AppBar/FilterAppBar'
-import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer'
-
 interface ILayoutState {
     showSideDrawer: boolean;
 }
@@ -19,11 +16,7 @@ class Layout extends React.Component<IProps, ILayoutState> {
     render () {
         return (
             <>
-                <FilterAppBar>
-                    <SideDrawer
-                        isAuth={this.props.isAuthenticated}
-                    />
-                </FilterAppBar>
+                {/*Somehow trow auth in props*/}
                 <main>
                     {this.props.children}
                 </main>

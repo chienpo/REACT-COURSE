@@ -29,7 +29,7 @@ const styles = (theme: any) => ({
     },
 });
 
-class SummaryAnnouncement extends React.Component<{classes: any}> {
+class Advertisement extends React.Component<{classes: any}> {
 
     render() {
         const { classes } = this.props;
@@ -82,4 +82,4 @@ class SummaryAnnouncement extends React.Component<{classes: any}> {
     }
 }
 
-export default withStyles(styles)(SummaryAnnouncement);
+export default withStyles(styles)(Advertisement);
