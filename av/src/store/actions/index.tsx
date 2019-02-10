@@ -1,4 +1,8 @@
 export {
     auth,
-    logout
+    logout,
 } from './auth'
+
+export {
+    getAdvertisements
+} from './getAdvertisements'

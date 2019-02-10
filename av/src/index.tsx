@@ -8,12 +8,12 @@ import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './App';
-import carFilterReducer from './store/reducers/carFilter';
+import advertisementsReducer from './store/reducers/advertisements';
 import authReducer from './store/reducers/auth';
 
 
 const rootReduser = combineReducers({
-    carFilters: carFilterReducer,
+    advertisements: advertisementsReducer,
     auth: authReducer
 });
 

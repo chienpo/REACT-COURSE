@@ -16,6 +16,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DialogForm from "../../components/UI/DialogForm/DialogForm";
 import axios from "axios";
 
+import * as actions from '../../store/actions/index'
+
 
 const styles: any = (theme: any) => ({
     textField: {

@@ -67,13 +67,8 @@ interface INewAdvertisementState {
 }
 
 interface INewAdvertisementProps {
-    onSubmit: any,
     classes: any,
-    onAuth: any,
-    loading: boolean,
-    error: any;
-    ref: any;
-    advertisements: any;
+    loading: boolean;
 }
 
 class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdvertisementState> {
@@ -82,45 +77,6 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
     };
 
     inputRef = React.createRef();
-
-    // submitHandler = (event: React.FormEvent<{}>) => {
-    //     event.preventDefault();
-    //
-    //     const elementTarget = event.currentTarget as HTMLFormElement;
-    //
-    //     const formData = new FormData(elementTarget);
-    //     const brand = formData.get('brand') as string;
-    //     const model = formData.get('model') as string;
-    //     const year = formData.get('year') as string;
-    //     const body = formData.get('body') as string;
-    //     const price = formData.get('price') as string;
-    //     const message = formData.get('message') as string;
-    //     const engine = formData.get('engine') as string;
-    //     const volume = formData.get('volume') as string;
-    //     const dash = formData.get('dash') as string;
-    //     const transmission = formData.get('transmission') as string;
-    //     const city = formData.get('city') as string;
-    //     const image = formData.get('image');
-    //
-    //     const orders = {
-    //         brand,
-    //         model,
-    //         year,
-    //         body,
-    //         price,
-    //         message,
-    //         engine,
-    //         volume,
-    //         dash,
-    //         transmission,
-    //         city,
-    //         image
-    //     };
-    //
-    //     axios.post('https://avto-56119.firebaseio.com/advertisements.json', orders)
-    //         .then(response => console.log(response))
-    //         .catch(error => console.log(error));
-    // };
 
     submitHandler = async (values: any) => {
         const advertisement = {
