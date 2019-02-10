@@ -39,7 +39,7 @@ const styles: any = (theme: Theme) => ({
 
 
 interface IList {
-    [index: number]: { name: string; value: string; label: string };
+    [index: number]: { value: string; label: string };
     map(elem: any): any
 }
 
@@ -70,8 +70,14 @@ class DialogSelect extends React.Component<IDialogSelectProps, IDialogSelectStat
         this.setState({ open: true });
     };
 
-    handleClose = () => {
+    handleClose = (change: any) => {
+        change(this.state.value);
         this.setState({ open: false });
+    };
+
+    handleCloseWithCancel = (change: any) => {
+        this.setState({ open: false, value: '' });
+        change('');
     };
 
     render() {
@@ -80,9 +86,7 @@ class DialogSelect extends React.Component<IDialogSelectProps, IDialogSelectStat
         return (
             <Field validateFields={[]} {...fieldProps}>
                 {({ input, meta, ...customProps }) => {
-                    const {onChange} = input;
-
-                    console.log(input.value);
+                    const { onChange } = input;
 
                     return (
                         <FormControl className={classes.formControl}>
@@ -140,10 +144,10 @@ class DialogSelect extends React.Component<IDialogSelectProps, IDialogSelectStat
                                                 </form>
                                             </DialogContent>
                                             <DialogActions>
-                                                <Button onClick={this.handleClose} color="primary">
+                                                <Button onClick={() => this.handleCloseWithCancel(onChange)} color="primary">
                                                     Cancel
                                                 </Button>
-                                                <Button onClick={this.handleClose} color="primary">
+                                                <Button onClick={() => this.handleClose(onChange)} color="primary">
                                                     Ok
                                                 </Button>
                                             </DialogActions>
@@ -154,81 +158,6 @@ class DialogSelect extends React.Component<IDialogSelectProps, IDialogSelectStat
                     )
                 }}
             </Field>
-
-
-            // <Field validateFields={[]}  {...fieldProps}>
-            //     {({ meta, input, ...customProps }) => {
-            //
-            //         return (
-            //             <FormControl className={classes.formControl}>
-            //                 <InputLabel shrink required>
-            //                     {/*{this.props.title}*/}
-            //                 </InputLabel>
-            //                 <TextField
-            //                     {...input}
-            //                     {...customProps}
-            //                     margin="normal"
-            //                     variant="filled"
-            //                     className={classes.textField}
-            //                     value={this.state.value}
-            //                     onClick={this.handleClickOpen}
-            //                     InputProps={{
-            //                         endAdornment: <ArrowDropDown>Kg</ArrowDropDown>,
-            //                     }}
-            //                 />
-            //                 {meta.touched && meta.error && <span>{meta.error}</span>}
-            //                 <Dialog
-            //                     disableBackdropClick
-            //                     disableEscapeKeyDown
-            //                     open={this.state.open}
-            //                     onClose={this.handleClose}
-            //                 >
-            //                     {!this.props.options
-            //                         ? (
-            //                             <CircularProgress />
-            //                         ) : (
-            //                             <>
-            //                                 <DialogTitle>{this.props.title}</DialogTitle>
-            //                                 <DialogContent>
-            //                                     <form className={classes.container}>
-            //                                         <FormControl className={classes.formControl}>
-            //                                             <RadioGroup
-            //                                                 className={classes.formRadioGroup}
-            //                                                 aria-label="position"
-            //                                                 name="position"
-            //                                                 value={this.state.value}
-            //                                                 onChange={this.handleChange}
-            //                                                 row
-            //                                             >
-            //                                                 {this.props.options.map((elem: any) => (
-            //                                                     <FormControlLabel
-            //                                                         className={classes.formControlLabel}
-            //                                                         key={elem.value}
-            //                                                         value={elem.value}
-            //                                                         control={<Radio color="primary" />}
-            //                                                         label={elem.label}
-            //                                                         labelPlacement="end"
-            //                                                     />
-            //                                                 ))}
-            //                                             </RadioGroup>
-            //                                         </FormControl>
-            //                                     </form>
-            //                                 </DialogContent>
-            //                                 <DialogActions>
-            //                                     <Button onClick={this.handleClose} color="primary">
-            //                                         Cancel
-            //                                     </Button>
-            //                                     <Button onClick={this.handleClose} color="primary">
-            //                                         Ok
-            //                                     </Button>
-            //                                 </DialogActions>
-            //                             </>
-            //                         )}
-            //                 </Dialog>
-            //             </FormControl>
-            //         )
-            //     }}>
-            // </Field>
         );
     }
 }

@@ -70,10 +70,6 @@ class SearchEngine extends React.Component<{classes: any, onAuth: any, loading: 
         this.setState({right: true})
     }
 
-    componentWillUnmount(): void {
-        this.setState({right: false})
-    }
-
     render() {
         const { classes } = this.props;
         const { isSignIn } = this.state;
@@ -118,11 +114,11 @@ class SearchEngine extends React.Component<{classes: any, onAuth: any, loading: 
                             alignItems="center"
                             justify="center"
                         >
-                            <DialogSelect
-                                name='model'
-                                title='asd'
-                                options={carBrandList}
-                            />
+                            {/*<DialogSelect*/}
+                                {/*name='model'*/}
+                                {/*title='asd'*/}
+                                {/*options={carBrandList}*/}
+                            {/*/>*/}
                             <NestedList />
                         </Grid>
                     </form>

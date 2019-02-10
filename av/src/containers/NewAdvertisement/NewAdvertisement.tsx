@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
+import Radio from '@material-ui/core/Radio';
 
 import CircularProgress from '../../components/UI/Spinner/CircularProgress'
 import DialogSelect from "../../components/UI/DialogSelect/DialogSelect";
@@ -22,7 +23,6 @@ import {
 } from "../../components/UI/DialogSelect/select-lists";
 import TextField from "@material-ui/core/TextField/TextField";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import Radio from "@material-ui/core/Radio/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl/FormControl";
@@ -62,31 +62,26 @@ const styles: any = (theme: any) => ({
     }
 });
 
-interface INewAdvertisement {
-    email: string;
+interface INewAdvertisementState {
+    file: any;
 }
 
-interface IAuthProps {
-    classes: any;
-    input: any;
-    meta: any;
-    fieldProps: any;
-    onSubmit: any,
-    onAuth: any,
-    loading: boolean,
-    error: any,
-}
-
-class NewAdvertisement extends React.Component<{
+interface INewAdvertisementProps {
     onSubmit: any,
     classes: any,
     onAuth: any,
     loading: boolean,
-    error: any
-}, INewAdvertisement> {
+    error: any;
+    ref: any;
+    advertisements: any;
+}
+
+class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdvertisementState> {
     state = {
-        email: '',
+        file: null
     };
+
+    inputRef = React.createRef();
 
     // submitHandler = (event: React.FormEvent<{}>) => {
     //     event.preventDefault();
@@ -127,12 +122,38 @@ class NewAdvertisement extends React.Component<{
     //         .catch(error => console.log(error));
     // };
 
-    submitHandler = (values: any) => {
-        // axios.post('https://avto-56119.firebaseio.com/advertisements.json', values)
-        //         .then(response => console.log(response))
-        //         .catch(error => console.log(error));
-        console.log(values)
+    submitHandler = async (values: any) => {
+        const advertisement = {
+            brand: values.brand,
+            model: values.model,
+            year: values.year,
+            body: values.body,
+            price: values.price,
+            message: values.message,
+            engine: values.engine,
+            volume: values.volume,
+            dash: values.dash,
+            transmission: values.transmission,
+            city: values.city,
+            image: this.state.file
+        };
+
+
+        try {
+            await axios.post('https://avto-56119.firebaseio.com/advertisements.json', advertisement);
+
+        } catch (error) {
+            console.log(error)
+        }
     };
+
+    getBase64(file: any) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            this.setState({ file: reader.result });
+        };
+    }
 
     render() {
         const { classes } = this.props;
@@ -161,14 +182,177 @@ class NewAdvertisement extends React.Component<{
 
                     <Form
                         onSubmit={this.submitHandler}
-                        render={({ handleSubmit, form, submitting, pristine, values }) => (
-                            <form onSubmit={handleSubmit}>
+                        render={({ handleSubmit, form, submitting, pristine, invalid }) => (
+                            <form
+                                onSubmit={handleSubmit}
+                                autoComplete='off'
+                            >
                                 <DialogSelect
                                     title='Марка автомобиля'
                                     options={carBrandList}
                                     name='brand'
                                 />
+                                <Divider light />
+
+                                <DialogSelect
+                                    title='Модель'
+                                    options={carModelMazdaList}
+                                    name='model'
+                                />
+                                <Divider light />
+
+                                <DialogSelect
+                                    title='Год выпуска'
+                                    options={carYearList}
+                                    name='year'
+                                />
+                                <Divider light />
+
+                                <DialogSelect
+                                    title='Тип кузова'
+                                    options={bodyTypeList}
+                                    name='body'
+                                />
+                                <Divider light />
+
+                                <Field name="price" >
+                                    {({ input, meta }) => (
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel shrink required>
+                                                Цена
+                                            </InputLabel>
+                                            <TextField
+                                                className={classes.textField}
+                                                margin="normal"
+                                                variant="filled"
+                                                {...input}
+                                            />
+                                            {meta.touched && meta.error && <span>{meta.error}</span>}
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Divider light />
+
+                                <Field name="message" >
+                                    {({ input, meta }) => (
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel shrink required>
+                                                Текст обьявления
+                                            </InputLabel>
+                                            <TextField
+                                                multiline
+                                                rows="4"
+                                                className={classes.textField}
+                                                margin="normal"
+                                                variant="filled"
+                                                {...input}
+                                            />
+                                            {meta.touched && meta.error && <span>{meta.error}</span>}
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Divider light />
+
+                                <DialogSelect
+                                    title='Двигатель'
+                                    options={engineTypeList}
+                                    name='engine'
+                                />
+                                <Divider light />
+
+                                <DialogSelect
+                                    title='Обьем двигателя'
+                                    options={engineVolumeList}
+                                    name='volume'
+                                />
+                                <Divider light />
+
+                                <Field name="dash" >
+                                    {({ input, meta }) => (
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel shrink required>
+                                                Пробег КМ
+                                            </InputLabel>
+                                            <TextField
+                                                className={classes.textField}
+                                                margin="normal"
+                                                variant="filled"
+                                                {...input}
+                                            />
+                                            {meta.touched && meta.error && <span>{meta.error}</span>}
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Divider light />
+
+                                <Field name="transmission" type="radio">
+                                    {({ input, meta }) => (
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel shrink required>
+                                                Коробка передач
+                                            </InputLabel>
+                                            <RadioGroup
+                                                className={classes.formRadioGroup}
+                                                aria-label="position"
+                                                row
+                                                {...input}
+                                            >
+                                                <FormControlLabel
+                                                    value="automatic"
+                                                    control={<Radio color="primary" />}
+                                                    label="Автомат"
+                                                    labelPlacement="end"
+                                                />
+                                                <FormControlLabel
+                                                    value="manual"
+                                                    control={<Radio color="primary" />}
+                                                    label="Механика"
+                                                    labelPlacement="end"
+                                                />
+                                            </RadioGroup>
+                                            {meta.touched && meta.error && <span>{meta.error}</span>}
+                                        </FormControl>
+                                    )}
+                                </Field>
+                                <Divider light />
+
+                                <DialogSelect
+                                    title='Город'
+                                    options={yourCityList}
+                                    name='city'
+                                />
+                                <Divider light />
+
+                                <Field name="image" type="file" ref={this.inputRef}>
+                                    {({ input, meta }) => (
+                                        <Button variant="contained" component="label" color="default" className={classes.button}>
+                                            Фото из галереи
+                                            <input
+                                                {...input}
+                                                type="file"
+                                                onChange={
+                                                    e => {
+                                                        const { onChange } = input;
+
+                                                        input.onChange(e);
+                                                        if (onChange) {
+                                                            onChange(e)
+                                                        }
+                                                        const [file] = e.target.files;
+
+                                                        this.getBase64(file)
+                                                    }
+                                                }
+                                            />
+                                            <CloudUploadIcon className={classes.rightIcon} />
+                                            {meta.touched && meta.error && <span>{meta.error}</span>}
+                                        </Button>
+                                    )}
+                                </Field>
+                                <Divider light />
+
                                 <Button
+                                    disabled={pristine || invalid}
                                     variant="contained"
                                     color="primary"
                                     className={classes.button}
@@ -179,171 +363,6 @@ class NewAdvertisement extends React.Component<{
                             </form>
                         )}
                     />
-
-                    {/*<Form onSubmit={this.submitHandler}>*/}
-                        {/*{({ form, handleSubmit }) => (*/}
-                            {/*<form onSubmit={handleSubmit}>*/}
-                                {/*<DialogSelect*/}
-                                    {/*title='Марка автомобиля'*/}
-                                    {/*options={carBrandList}*/}
-                                    {/*name='brand'*/}
-                                {/*/>*/}
-                                {/*<Button*/}
-                                    {/*// disabled={pristine || invalid}*/}
-                                    {/*variant="contained"*/}
-                                    {/*color="primary"*/}
-                                    {/*className={classes.button}*/}
-                                    {/*type='submit'*/}
-                                {/*>*/}
-                                    {/*Опубликовать*/}
-                                {/*</Button>*/}
-                            {/*</form>*/}
-                        {/*)}*/}
-                    {/*</Form>*/}
-
-                    {/*<form*/}
-                        {/*noValidate*/}
-                        {/*autoComplete="off"*/}
-                        {/*onSubmit={this.submitHandler}*/}
-                    {/*>*/}
-                        {/*<DialogSelect*/}
-                            {/*title='Марка автомобиля'*/}
-                            {/*options={carBrandList}*/}
-                            {/*name='brand'*/}
-                        {/*/>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<DialogSelect*/}
-                            {/*title='Модель'*/}
-                            {/*options={carModelMazdaList}*/}
-                            {/*name='model'*/}
-                        {/*/>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<DialogSelect*/}
-                            {/*title='Год выпуска'*/}
-                            {/*options={carYearList}*/}
-                            {/*name='year'*/}
-                        {/*/>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<DialogSelect*/}
-                            {/*title='Тип кузова'*/}
-                            {/*options={bodyTypeList}*/}
-                            {/*name='body'*/}
-                        {/*/>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<FormControl className={classes.formControl}>*/}
-                            {/*<InputLabel shrink required>*/}
-                                {/*Цена*/}
-                            {/*</InputLabel>*/}
-                            {/*<TextField*/}
-                                {/*className={classes.textField}*/}
-                                {/*margin="normal"*/}
-                                {/*variant="filled"*/}
-                                {/*name='price'*/}
-                            {/*/>*/}
-                        {/*</FormControl>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<FormControl className={classes.formControl}>*/}
-                            {/*<InputLabel shrink required>*/}
-                                {/*Текст обьявления*/}
-                            {/*</InputLabel>*/}
-                            {/*<TextField*/}
-                                {/*multiline*/}
-                                {/*rows="4"*/}
-                                {/*className={classes.textField}*/}
-                                {/*margin="normal"*/}
-                                {/*variant="filled"*/}
-                                {/*name='message'*/}
-                            {/*/>*/}
-                        {/*</FormControl>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<DialogSelect*/}
-                            {/*title='Двигатель'*/}
-                            {/*options={engineTypeList}*/}
-                            {/*name='engine'*/}
-                        {/*/>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<DialogSelect*/}
-                            {/*title='Обьем двигателя'*/}
-                            {/*options={engineVolumeList}*/}
-                            {/*name='volume'*/}
-                        {/*/>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<FormControl className={classes.formControl}>*/}
-                            {/*<InputLabel shrink required>*/}
-                                {/*Пробег КМ*/}
-                            {/*</InputLabel>*/}
-                            {/*<TextField*/}
-                                {/*className={classes.textField}*/}
-                                {/*margin="normal"*/}
-                                {/*variant="filled"*/}
-                                {/*name='dash'*/}
-                            {/*/>*/}
-                        {/*</FormControl>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<FormControl className={classes.formControl}>*/}
-                            {/*<InputLabel shrink required>*/}
-                                {/*Коробка передач*/}
-                            {/*</InputLabel>*/}
-                            {/*<RadioGroup*/}
-                                {/*className={classes.formRadioGroup}*/}
-                                {/*aria-label="position"*/}
-                                {/*name="transmission"*/}
-                                {/*row*/}
-                            {/*>*/}
-                                {/*<FormControlLabel*/}
-                                    {/*value="automatic"*/}
-                                    {/*control={<Radio color="primary" />}*/}
-                                    {/*label="Автомат"*/}
-                                    {/*labelPlacement="end"*/}
-                                {/*/>*/}
-                                {/*<FormControlLabel*/}
-                                    {/*value="manual"*/}
-                                    {/*control={<Radio color="primary" />}*/}
-                                    {/*label="Механика"*/}
-                                    {/*labelPlacement="end"*/}
-                                {/*/>*/}
-                            {/*</RadioGroup>*/}
-                        {/*</FormControl>*/}
-                        {/*<Divider light />*/}
-
-                        {/*<DialogSelect*/}
-                            {/*title='Город'*/}
-                            {/*options={yourCityList}*/}
-                            {/*name='city'*/}
-                        {/*/>*/}
-                        {/*<Divider light />*/}
-
-
-                        {/*<Button variant="contained" component="label" color="default" className={classes.button}>*/}
-                            {/*Фото из галереи*/}
-                            {/*<input*/}
-                                {/*type="file"*/}
-                                {/*// style={{ display: "none" }}*/}
-                                {/*name='image'*/}
-                            {/*/>*/}
-                            {/*<CloudUploadIcon className={classes.rightIcon} />*/}
-                        {/*</Button>*/}
-                        {/*<Divider light />*/}
-
-
-                        {/*<Button*/}
-                            {/*variant="contained"*/}
-                            {/*color="primary"*/}
-                            {/*className={classes.button}*/}
-                            {/*type='submit'*/}
-                        {/*>*/}
-                            {/*Опубликовать*/}
-                        {/*</Button>*/}
-                    {/*</form>*/}
                 </Grid>
             </div>
         )

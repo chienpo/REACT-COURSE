@@ -14,6 +14,7 @@ import Advertisement from "../../components/SearchEngine/SearchSummary/Advertise
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 import IconButton from '@material-ui/core/IconButton';
 import DialogForm from "../../components/UI/DialogForm/DialogForm";
+import axios from "axios";
 
 
 const styles: any = (theme: any) => ({
@@ -44,28 +45,62 @@ const styles: any = (theme: any) => ({
     }
 });
 
-interface IAuthState {
-    right: boolean;
+interface IAdvertisementsProps {
+    classes: any;
 }
 
-class Advertisements extends React.Component<{classes: any, onAuth: any, loading: boolean, error: any }, IAuthState> {
+interface IAdvertisementsState {
+    right: boolean;
+    advertisements: {
+        [key: string]: IAdvertisement
+    };
+}
+
+interface IAdvertisement {
+    body: string;
+    brand: string;
+    city: string;
+    dash: string;
+    engine: string;
+    image: string;
+    message: string;
+    model: string;
+    price: string;
+    transmission: string;
+    volume: string;
+    year: string;
+}
+
+class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisementsState> {
     state = {
-        right: false
+        right: false,
+        advertisements: {}
     };
 
-
-    componentDidMount(): void {
-        this.setState({right: true})
+    componentDidMount () {
+        Promise.all([
+            this.loadAdvertisements()
+        ]).then(([advertisements]) => {
+            this.setState({
+                advertisements,
+                right: true
+            })
+        }).catch((e) => {
+            console.log(e)
+        })
     }
 
-    componentWillUnmount(): void {
-        this.setState({right: false})
-    }
+    loadAdvertisements = async () => {
+       const response =  await axios.get('https://avto-56119.firebaseio.com/advertisements.json');
+
+       return response.data
+    };
 
     render() {
         const { classes } = this.props;
+        const { advertisements } = this.state;
 
-        if (this.props.loading) {
+        if (!advertisements) {
             return <CircularProgress />
         }
 
@@ -105,17 +140,9 @@ class Advertisements extends React.Component<{classes: any, onAuth: any, loading
                         justify="center"
                     >
                         <Grid item xs={12} sm={12}>
-                            {/*Map advertisements*/}
-                            <Advertisement/>
-                            <Advertisement/>
-                            <Advertisement/>
-                            <Advertisement/>
-                            <Advertisement/>
-                            <Advertisement/>
-                            <Advertisement/>
-                            <Advertisement/>
-                            <Advertisement/>
-                            <Advertisement/>
+                            <Advertisement
+                                advertisements={advertisements}
+                            />
                         </Grid>
                     </Grid>
                 </div>

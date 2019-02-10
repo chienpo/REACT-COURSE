@@ -88,10 +88,6 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
         this.setState({right: true})
     }
 
-    componentWillUnmount(): void {
-        this.setState({right: false})
-    }
-
     render() {
         const { classes } = this.props;
         const { isSignIn } = this.state;

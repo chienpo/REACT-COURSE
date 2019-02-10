@@ -6,8 +6,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
-import carPreview from '../../../assets/images/avatar.jpg'
-
 const styles = (theme: any) => ({
     root: {
         flexGrow: 1,
@@ -29,55 +27,74 @@ const styles = (theme: any) => ({
     },
 });
 
-class Advertisement extends React.Component<{classes: any}> {
+interface IEntries {
+    body: string;
+    brand: string;
+    city: string;
+    dash: string;
+    engine: string;
+    image: string;
+    message: string;
+    model: string;
+    price: string;
+    transmission: string;
+    volume: string;
+    year: string;
+}
+
+class Advertisement extends React.Component<{classes: any, advertisements: any}> {
 
     render() {
-        const { classes } = this.props;
+        const { classes, advertisements } = this.props;
 
         return(
-            <div className={classes.root}>
-                <Paper className={classes.paper}>
-                    <Grid container spacing={16}>
-
-                        <Grid item>
-                            <ButtonBase className={classes.image}>
-                                <img className={classes.img} alt="complex" src={carPreview} />
-                            </ButtonBase>
-                        </Grid>
-
-                        <Grid item xs={12} sm container>
-                            <Grid item xs={2}>
-                                <Typography variant="subtitle1">2011</Typography>
-                                <Typography style={{ cursor: 'pointer', fontWeight: 'bold', fontSize: '20px'  }}>42 862 р.</Typography>
-                                <Typography color="textSecondary">19 850</Typography>
-                                <Typography color="textSecondary">Могилев</Typography>
+            <>
+                {Object.entries<IEntries>(advertisements).map(([iterator, adv]) => (
+                    <Paper key={iterator} className={classes.paper}>
+                        <Grid container spacing={16}>
+                            <Grid item>
+                                <ButtonBase className={classes.image}>
+                                    <img
+                                        className={classes.img}
+                                        alt="complex"
+                                        src={`${adv.image}`}
+                                    />
+                                </ButtonBase>
                             </Grid>
-                            <Grid item xs={10} container direction="column" spacing={16}>
-                                <Grid item xs>
-                                    <Typography
-                                        gutterBottom variant="subtitle1"
-                                        style={{ cursor: 'pointer', fontWeight: 'bold', color: '#1a60ba', fontSize: '20px' }}
-                                    >
-                                        Infiniti FX II 37
-                                    </Typography>
-                                    <Typography
-                                        gutterBottom variant="subtitle1"
-                                    >
-                                        автомат, 3.7 л., бензин, внедорожник 5 дв., 153457 км
-                                    </Typography>
-                                    <Typography color="textSecondary">
-                                        Отличное состояние. По тех. части без вопросов. Кузов ровный без жуков. Зимняя резина.
-                                    </Typography>
+
+                            <Grid item xs={12} sm container>
+                                <Grid item xs={2}>
+                                    <Typography variant="subtitle1">{adv.year}</Typography>
+                                    <Typography style={{ cursor: 'pointer', fontWeight: 'bold', fontSize: '20px'  }}>{adv.price} р.</Typography>
+                                    <Typography color="textSecondary">{adv.price}</Typography>
+                                    <Typography color="textSecondary">{adv.city}</Typography>
                                 </Grid>
-                                <Grid item>
-                                    <Typography  style={{ cursor: 'pointer', textAlign: 'right' }}>29 ноя</Typography>
+                                <Grid item xs={10} container direction="column" spacing={16}>
+                                    <Grid item xs>
+                                        <Typography
+                                            gutterBottom variant="subtitle1"
+                                            style={{ cursor: 'pointer', fontWeight: 'bold', color: '#1a60ba', fontSize: '20px' }}
+                                        >
+                                            {adv.brand} {adv.model}
+                                        </Typography>
+                                        <Typography
+                                            gutterBottom variant="subtitle1"
+                                        >
+                                            {adv.transmission}, {adv.volume} л., {adv.engine}, {adv.body}, {adv.dash} км
+                                        </Typography>
+                                        <Typography color="textSecondary">
+                                            {adv.message}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography  style={{ cursor: 'pointer', textAlign: 'right' }}>{adv.year}</Typography>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
-
-                    </Grid>
-                </Paper>
-            </div>
+                    </Paper>
+                ))}
+            </>
         )
     }
 }
