@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from "../utility";
 
 const initialState = {
-    userId: null,
+    advertisements: null,
     error: null,
     loading: false
 };
@@ -31,9 +31,9 @@ const getAdvertisementsFail = (state: any, action: any) => {
 
 const reducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case actionTypes.AUTH_START: return getAdvertisementsStart(state, action);
-        case actionTypes.AUTH_SUCCESS: return getAdvertisementsSuccess(state, action);
-        case actionTypes.AUTH_FAIL: return getAdvertisementsFail(state, action);
+        case actionTypes.GET_ADVERTISEMENTS_START: return getAdvertisementsStart(state, action);
+        case actionTypes.GET_ADVERTISEMENTS_SUCCESS: return getAdvertisementsSuccess(state, action);
+        case actionTypes.GET_ADVERTISEMENTS_FAIL: return getAdvertisementsFail(state, action);
         default: return state;
     }
 };

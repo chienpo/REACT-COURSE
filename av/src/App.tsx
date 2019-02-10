@@ -7,6 +7,7 @@ import Auth from './containers/Auth/Auth'
 import Logout from './containers/Auth/Logout/Logout';
 import NewAdvertisement from "./containers/NewAdvertisement/NewAdvertisement";
 import Advertisements from "./containers/Advertisements/Advertisements";
+import Advertisement from "./containers/Advertisement/Advertisement";
 
 class App extends Component<{ children: any, isAuth: any }> {
   componentDidMount() {
@@ -20,6 +21,7 @@ class App extends Component<{ children: any, isAuth: any }> {
           <Route path="/logout" component={Logout} />
           <Route path="/new-advertisement" component={NewAdvertisement} />
           <Route path="/advertisements" component={Advertisements} />
+          <Route path="/advertisement" component={Advertisement} />
           <Route path="/" exact component={SearchEngine} />
       </Switch>
     );

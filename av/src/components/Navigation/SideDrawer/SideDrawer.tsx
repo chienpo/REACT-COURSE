@@ -50,19 +50,6 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
                     ? <Link to="/auth"><ProfileAvatar />Войти</Link>
                     : <Link to="/logout"><ProfileAvatar />Выйти</Link>
                 }
-
-                {isAuth && (
-                    <>
-                        <Divider />
-                        <List>
-                            <ListItem button>
-                                <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
-                                <ListItemText>Кабинет пользователя</ListItemText>
-                            </ListItem>
-                        </List>
-                    </>
-                )}
-
                 <Divider />
 
                 <List>
@@ -70,12 +57,6 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
                         <ListItem button>
                             <ListItemIcon><DirectionsCarIcon /></ListItemIcon>
                             <ListItemText>Поиск автомобилей</ListItemText>
-                        </ListItem>
-                    </Link>
-                    <Link to="/advertisements">
-                        <ListItem button>
-                            <ListItemIcon><DirectionsCarIcon /></ListItemIcon>
-                            <ListItemText>Результаты поиска</ListItemText>
                         </ListItem>
                     </Link>
                     {isAuth && (
@@ -91,12 +72,16 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
                 {isAuth && (
                     <>
                         <List>
-                            {['Мои обьявления', 'Закладки', 'Сообщения'].map((text, index) => (
-                                <ListItem button key={text}>
-                                    <ListItemIcon>{index % 2 === 0 ? <MessageIcon /> : <TurnedInNotIcon />}</ListItemIcon>
-                                    <ListItemText primary={text} />
+                            <Link to="/advertisements">
+                                <ListItem button>
+                                    <ListItemIcon><MessageIcon /></ListItemIcon>
+                                    <ListItemText>Мои обьявления</ListItemText>
                                 </ListItem>
-                            ))}
+                            </Link>
+                            <ListItem button>
+                                <ListItemIcon><TurnedInNotIcon /></ListItemIcon>
+                                <ListItemText>Закладки</ListItemText>
+                            </ListItem>
                         </List>
                         <Divider />
                     </>
