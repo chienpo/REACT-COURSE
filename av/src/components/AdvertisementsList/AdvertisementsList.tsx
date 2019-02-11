@@ -43,7 +43,7 @@ interface IEntries {
     year: string;
 }
 
-class Advertisement extends React.Component<{classes: any, advertisements: any}> {
+class AdvertisementsList extends React.Component<{classes: any, advertisements: any}> {
 
     render() {
         const { classes, advertisements } = this.props;
@@ -51,8 +51,8 @@ class Advertisement extends React.Component<{classes: any, advertisements: any}>
         return(
             <>
                 {Object.entries<IEntries>(advertisements).map(([iterator, adv]) => (
-                    <Link to="/advertisement">
-                        <Paper key={iterator} className={classes.paper}>
+                    <Link to={'/advertisements/' + adv.model} key={iterator}>
+                        <Paper className={classes.paper}>
                             <Grid container spacing={16}>
                                 <Grid item>
                                     <ButtonBase className={classes.image}>
@@ -102,4 +102,4 @@ class Advertisement extends React.Component<{classes: any, advertisements: any}>
     }
 }
 
-export default withStyles(styles)(Advertisement);
+export default withStyles(styles)(AdvertisementsList);

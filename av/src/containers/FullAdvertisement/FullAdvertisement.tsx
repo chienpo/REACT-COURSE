@@ -46,7 +46,7 @@ interface IAdvertisementState {
     right: boolean;
 }
 
-class Advertisement extends React.Component<IAdvertisementProps, IAdvertisementState> {
+class FullAdvertisement extends React.Component<IAdvertisementProps, IAdvertisementState> {
     state = {
         right: false,
     };
@@ -100,7 +100,7 @@ class Advertisement extends React.Component<IAdvertisementProps, IAdvertisementS
                         justify="center"
                     >
                         <Grid item xs={12} sm={12}>
-                            <h2>Автомобиль</h2>
+                            <h2>FullAdvertisement</h2>
                         </Grid>
                     </Grid>
                 </div>
@@ -120,4 +120,4 @@ const mapDispatchToProps = (dispatch: any) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Advertisement));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(FullAdvertisement));

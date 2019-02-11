@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import Drawer from '@material-ui/core/Drawer';
 
@@ -10,11 +10,10 @@ import CircularProgress from '../../components/UI/Spinner/CircularProgress'
 import AppMenu from '../../components/Navigation/AppBar/AppMenu';
 import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
-import Advertisement from "../../components/SearchEngine/SearchSummary/Advertisement";
+import AdvertisementsList from "../../components/AdvertisementsList/AdvertisementsList";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 import IconButton from '@material-ui/core/IconButton';
 import DialogForm from "../../components/UI/DialogForm/DialogForm";
-import axios from "axios";
 
 import * as actions from '../../store/actions/index'
 
@@ -135,7 +134,7 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
                                   <CircularProgress />
                               </Grid>
                             ) : (
-                                <Advertisement
+                                <AdvertisementsList
                                     advertisements={advertisements}
                                 />
                             )}
