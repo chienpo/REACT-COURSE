@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Drawer from '@material-ui/core/Drawer';
+import axios from 'axios';
 
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +10,8 @@ import AppMenu from '../../components/Navigation/AppBar/AppMenu';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
+
+import FullCarAdvertisement from '../../components/FullCarAdvertisement/FullCarAdvertisement'
 
 const styles: any = (theme: any) => ({
     textField: {
@@ -38,25 +41,52 @@ const styles: any = (theme: any) => ({
     }
 });
 
-interface IAdvertisementProps {
+interface IFullAdvertisementProps {
     classes: any;
+    match: any;
 }
 
-interface IAdvertisementState {
+interface IFullAdvertisementState {
     right: boolean;
+    loadedFullAdvertisement: any;
 }
 
-class FullAdvertisement extends React.Component<IAdvertisementProps, IAdvertisementState> {
+class FullAdvertisement extends React.Component<IFullAdvertisementProps, IFullAdvertisementState> {
     state = {
         right: false,
+        loadedFullAdvertisement: []
     };
 
     componentDidMount(): void {
+        this.loadData();
         this.setState({right: true});
+    }
+
+    loadData() {
+        if ( this.props.match.params.id ) {
+            // if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id) ) {
+                axios.get( 'https://avto-56119.firebaseio.com/advertisements.json' )
+                    .then( res => {
+                        const fetchedAdvertisements: any = [];
+
+                        for (let key in res.data) {
+                            fetchedAdvertisements.push({
+                                ...res.data[key],
+                                id: key
+                            });
+                        }
+
+                        const currentPost = fetchedAdvertisements.filter((x: any) => x.id === this.props.match.params.id);
+
+                        this.setState( { loadedFullAdvertisement: currentPost } );
+                    } );
+            // }
+        }
     }
 
     render() {
         const { classes } = this.props;
+        const { loadedFullAdvertisement } = this.state;
 
         return(
             <Drawer
@@ -100,7 +130,9 @@ class FullAdvertisement extends React.Component<IAdvertisementProps, IAdvertisem
                         justify="center"
                     >
                         <Grid item xs={12} sm={12}>
-                            <h2>FullAdvertisement</h2>
+                            <FullCarAdvertisement
+                                fullAdvert={loadedFullAdvertisement}
+                            />
                         </Grid>
                     </Grid>
                 </div>

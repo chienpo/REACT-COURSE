@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import {Link} from "react-router-dom";
 
 const styles = (theme: any) => ({
     root: {
@@ -43,7 +42,11 @@ interface IEntries {
     year: string;
 }
 
-class AdvertisementsList extends React.Component<{classes: any, advertisements: any}> {
+class AdvertisementsList extends React.Component<{classes: any, advertisements: any, history: any}> {
+
+    postSelectedHandler = ( id: string ) => {
+        this.props.history.push( '/advertisements/' + id );
+    };
 
     render() {
         const { classes, advertisements } = this.props;
@@ -51,51 +54,53 @@ class AdvertisementsList extends React.Component<{classes: any, advertisements: 
         return(
             <>
                 {Object.entries<IEntries>(advertisements).map(([iterator, adv]) => (
-                    <Link to={'/advertisements/' + adv.model} key={iterator}>
-                        <Paper className={classes.paper}>
-                            <Grid container spacing={16}>
-                                <Grid item>
-                                    <ButtonBase className={classes.image}>
-                                        <img
-                                            className={classes.img}
-                                            alt="complex"
-                                            src={`${adv.image}`}
-                                        />
-                                    </ButtonBase>
-                                </Grid>
+                    <Paper
+                        key={iterator}
+                        className={classes.paper}
+                        onClick={() => this.postSelectedHandler( iterator )}
+                    >
+                        <Grid container spacing={16}>
+                            <Grid item>
+                                <ButtonBase className={classes.image}>
+                                    <img
+                                        className={classes.img}
+                                        alt="complex"
+                                        src={`${adv.image}`}
+                                    />
+                                </ButtonBase>
+                            </Grid>
 
-                                <Grid item xs={12} sm container>
-                                    <Grid item xs={2}>
-                                        <Typography variant="subtitle1">{adv.year}</Typography>
-                                        <Typography style={{ cursor: 'pointer', fontWeight: 'bold', fontSize: '20px'  }}>{adv.price} р.</Typography>
-                                        <Typography color="textSecondary">{adv.price}</Typography>
-                                        <Typography color="textSecondary">{adv.city}</Typography>
+                            <Grid item xs={12} sm container>
+                                <Grid item xs={2}>
+                                    <Typography variant="subtitle1">{adv.year}</Typography>
+                                    <Typography style={{ cursor: 'pointer', fontWeight: 'bold', fontSize: '20px'  }}>{adv.price} р.</Typography>
+                                    <Typography color="textSecondary">{adv.price}</Typography>
+                                    <Typography color="textSecondary">{adv.city}</Typography>
+                                </Grid>
+                                <Grid item xs={10} container direction="column" spacing={16}>
+                                    <Grid item xs>
+                                        <Typography
+                                            gutterBottom variant="subtitle1"
+                                            style={{ cursor: 'pointer', fontWeight: 'bold', color: '#1a60ba', fontSize: '20px' }}
+                                        >
+                                            {adv.brand} {adv.model}
+                                        </Typography>
+                                        <Typography
+                                            gutterBottom variant="subtitle1"
+                                        >
+                                            {adv.transmission}, {adv.volume} л., {adv.engine}, {adv.body}, {adv.dash} км
+                                        </Typography>
+                                        <Typography color="textSecondary">
+                                            {adv.message}
+                                        </Typography>
                                     </Grid>
-                                    <Grid item xs={10} container direction="column" spacing={16}>
-                                        <Grid item xs>
-                                            <Typography
-                                                gutterBottom variant="subtitle1"
-                                                style={{ cursor: 'pointer', fontWeight: 'bold', color: '#1a60ba', fontSize: '20px' }}
-                                            >
-                                                {adv.brand} {adv.model}
-                                            </Typography>
-                                            <Typography
-                                                gutterBottom variant="subtitle1"
-                                            >
-                                                {adv.transmission}, {adv.volume} л., {adv.engine}, {adv.body}, {adv.dash} км
-                                            </Typography>
-                                            <Typography color="textSecondary">
-                                                {adv.message}
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item>
-                                            <Typography  style={{ cursor: 'pointer', textAlign: 'right' }}>{adv.year}</Typography>
-                                        </Grid>
+                                    <Grid item>
+                                        <Typography  style={{ cursor: 'pointer', textAlign: 'right' }}>{adv.year}</Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                        </Paper>
-                    </Link>
+                        </Grid>
+                    </Paper>
                 ))}
             </>
         )

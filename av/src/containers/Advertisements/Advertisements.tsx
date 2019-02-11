@@ -16,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DialogForm from "../../components/UI/DialogForm/DialogForm";
 
 import * as actions from '../../store/actions/index'
+import FullAdvertisement from "../FullAdvertisement/FullAdvertisement";
 
 
 const styles: any = (theme: any) => ({
@@ -53,6 +54,7 @@ interface IAdvertisementsProps {
     advertisements: {
         [key: string]: IAdvertisement
     };
+    history: any;
 }
 
 interface IAdvertisementsState {
@@ -85,7 +87,7 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
     }
 
     render() {
-        const { classes, loading, advertisements } = this.props;
+        const { classes, loading, advertisements, history } = this.props;
 
         return(
             <Drawer
@@ -135,12 +137,14 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
                               </Grid>
                             ) : (
                                 <AdvertisementsList
+                                    history={history}
                                     advertisements={advertisements}
                                 />
                             )}
                         </Grid>
                     </Grid>
                 </div>
+                <Route path="/advertisements/:id" exact component={FullAdvertisement} />
             </Drawer>
         )
     }
