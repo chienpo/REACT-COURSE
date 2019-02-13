@@ -9,8 +9,8 @@ export const carBrandList: EnumServiceItems = [
 ];
 
 export const carModelMazdaList: EnumServiceItems = [
-    {value: '323', label: '323'},
-    {value: '626', label: '626'}
+    {value: '3', label: '3'},
+    {value: '6', label: '6'}
 ];
 
 export const engineVolumeList: EnumServiceItems = [

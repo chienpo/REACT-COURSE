@@ -9,9 +9,18 @@ export const getAdvertisementsStart = () => {
 };
 
 export const getAdvertisementsSuccess = (advertisements: any) => {
+    const fetchedAdvertisements: any = [];
+
+    for (let key in advertisements) {
+        fetchedAdvertisements.push({
+            ...advertisements[key],
+            id: key
+        });
+    }
+
     return {
         type: actionTypes.GET_ADVERTISEMENTS_SUCCESS,
-        advertisements
+        advertisements: fetchedAdvertisements
     };
 };
 

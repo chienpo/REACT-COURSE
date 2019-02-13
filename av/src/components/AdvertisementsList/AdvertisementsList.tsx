@@ -53,11 +53,11 @@ class AdvertisementsList extends React.Component<{classes: any, advertisements: 
 
         return(
             <>
-                {Object.entries<IEntries>(advertisements).map(([iterator, adv]) => (
+                {advertisements.map((adv: any, index: string) => (
                     <Paper
-                        key={iterator}
+                        key={index}
                         className={classes.paper}
-                        onClick={() => this.postSelectedHandler( iterator )}
+                        onClick={() => this.postSelectedHandler( index )}
                     >
                         <Grid container spacing={16}>
                             <Grid item>

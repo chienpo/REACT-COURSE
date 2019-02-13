@@ -29,11 +29,27 @@ const getAdvertisementsFail = (state: any, action: any) => {
     })
 };
 
+const filterAdvertisementsByName = (state: any, action: any) => {
+
+    console.log(action.name);
+
+    const filteredAdvertisements = state.advertisements.filter((pilot: any, index: any, arr: any) => {
+        return pilot.transmission === 'manual'
+    }).concat((val: any) => val);
+
+
+    return updateObject(state, {
+        advertisements: filteredAdvertisements,
+        loading: false
+    })
+};
+
 const reducer = (state = initialState, action: any) => {
     switch (action.type) {
         case actionTypes.GET_ADVERTISEMENTS_START: return getAdvertisementsStart(state, action);
         case actionTypes.GET_ADVERTISEMENTS_SUCCESS: return getAdvertisementsSuccess(state, action);
         case actionTypes.GET_ADVERTISEMENTS_FAIL: return getAdvertisementsFail(state, action);
+        case actionTypes.FILTER_ADVERTISEMENTS_BY_NAME: return filterAdvertisementsByName(state, action);
         default: return state;
     }
 };

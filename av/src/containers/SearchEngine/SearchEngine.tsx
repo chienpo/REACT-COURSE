@@ -9,13 +9,9 @@ import CircularProgress from '../../components/UI/Spinner/CircularProgress'
 
 import AppMenu from '../../components/Navigation/AppBar/AppMenu';
 import Typography from '@material-ui/core/Typography';
-import ArrowBack from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
-import DialogSelect from "../../components/UI/DialogSelect/DialogSelect";
 import NestedList from "../../components/UI/NestedList/NestedList";
-import {carBrandList} from "../../components/UI/DialogSelect/select-lists";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import SearchIcon from "../Advertisements/Advertisements";
 
 const styles: any = (theme: any) => ({
     textField: {
