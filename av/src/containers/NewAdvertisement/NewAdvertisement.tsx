@@ -121,7 +121,7 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
         return(
             <div className={classes.root}>
                 <AppMenu>
-                    <SideDrawer isAuth={true}/>
+                    <SideDrawer/>
                     <Typography variant="h6" color="inherit" className={classes.grow}>
                         Новое обьявление
                     </Typography>
@@ -325,16 +325,4 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
     }
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-
-    }
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(NewAdvertisement));
+export default withStyles(styles)(NewAdvertisement);

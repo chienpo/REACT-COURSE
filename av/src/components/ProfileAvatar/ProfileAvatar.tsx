@@ -16,7 +16,7 @@ const styles = {
     },
 };
 
-function ProfileAvatar(props: any) {
+const ProfileAvatar: (classes: any) => JSX.Element =  (props) =>  {
     const { classes } = props;
 
     return (
@@ -24,6 +24,6 @@ function ProfileAvatar(props: any) {
             <Avatar alt="Remy Sharp" src={profileLogo} className={classes.bigAvatar} />
         </Grid>
     );
-}
+};
 
 export default withStyles(styles)(ProfileAvatar);

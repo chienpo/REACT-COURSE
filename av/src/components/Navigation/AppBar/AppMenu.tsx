@@ -12,7 +12,7 @@ const styles = {
     }
 };
 
-function AppMenu(props: any) {
+const AppMenu: (classes: any) => JSX.Element = ( props ) => {
     const { classes } = props;
 
     return (
@@ -24,6 +24,6 @@ function AppMenu(props: any) {
             </AppBar>
         </div>
     );
-}
+};
 
 export default withStyles(styles)(AppMenu);

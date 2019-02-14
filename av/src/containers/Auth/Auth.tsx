@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Drawer from '@material-ui/core/Drawer';
+import { Redirect } from 'react-router-dom';
 
+import Drawer from '@material-ui/core/Drawer';
 import * as actions from '../../store/actions/index'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -51,7 +52,15 @@ interface IAuthState {
     right: boolean;
 }
 
-class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean, error: any}, IAuthState> {
+interface IAuthProps {
+    classes: any;
+    onAuth: boolean;
+    loading: boolean;
+    error: any;
+    isAuthenticated: boolean;
+}
+
+class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean, error: any, isAuthenticated: boolean}, IAuthState> {
     state = {
         isSignIn: true,
         email: '',
@@ -89,11 +98,15 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, isAuthenticated } = this.props;
         const { isSignIn } = this.state;
 
         if (this.props.loading) {
             return <CircularProgress />
+        }
+
+        if (isAuthenticated) {
+            return <Redirect to='/' />
         }
 
         return(
@@ -234,10 +247,19 @@ class Auth extends React.Component<{classes: any, onAuth: any, loading: boolean,
     }
 }
 
-const mapStateToProps = (state: any) => {
+interface IAuthStateInProps {
+    auth: {
+        token: string;
+        error: string;
+        loading: boolean;
+    };
+}
+
+const mapStateToProps = (state: IAuthStateInProps) => {
     return {
         loading: state.auth.loading,
-        error: state.auth.error
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null
     }
 };
 

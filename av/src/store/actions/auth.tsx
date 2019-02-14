@@ -8,10 +8,7 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (authData: any) => {
-    const idToken = authData.idToken;
-    const userId = authData.userId;
-
+export const authSuccess = (idToken: string, userId: any) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken,
@@ -27,6 +24,9 @@ export const authFail = (error: any) => {
 };
 
 export const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationDate');
+    localStorage.removeItem('userId');
     return {
       type: actionTypes.AUTH_LOGOUT
     };
@@ -57,11 +57,37 @@ export const auth = (email: string, password: string, isSignIn: boolean) => {
 
       axios.post(url, authData)
           .then(response => {
-              dispatch(authSuccess(response.data));
+              const expirationDate: any = new Date( new Date().getTime() + response.data.expiresIn * 1000 );
+
+              localStorage.setItem('token', response.data.idToken);
+              localStorage.setItem('expirationDate', expirationDate);
+              localStorage.setItem('userId', response.data.localId);
+              dispatch(authSuccess(response.data.idToken, response.data.userId));
               dispatch(checkAuthTimeout(response.data.expiresIn));
           })
           .catch(err => {
               dispatch(authFail(err.response.data.error));
           });
   };
+};
+
+export const authCheckState = () => {
+    return (dispatch: any) => {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            dispatch(logout());
+        } else {
+            const storageExpirationDate: any = localStorage.getItem('expirationDate');
+            const expirationDate = new Date(storageExpirationDate);
+
+            if (expirationDate <= new Date()) {
+                dispatch(logout());
+            } else {
+                const userId = localStorage.getItem('userId');
+                dispatch(authSuccess(token, userId));
+                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
+            }
+        }
+    }
 };

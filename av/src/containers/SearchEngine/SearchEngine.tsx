@@ -128,7 +128,7 @@ class SearchEngine extends React.Component<ISearchEngineProps, ISearchEngineStat
 
                 <div className={classes.root}>
                     <AppMenu>
-                        <SideDrawer isAuth={true}/>
+                        <SideDrawer />
                         <Typography variant="h6" color="inherit" className={classes.grow}>
                             Поиск автомобилей
                         </Typography>

@@ -163,7 +163,7 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
             >
                 <div className={classes.root}>
                     <AppMenu>
-                        <SideDrawer isAuth={true}/>
+                        <SideDrawer/>
                         <Typography variant="h6" color="inherit" className={classes.grow}>
                             Обьявления
                         </Typography>

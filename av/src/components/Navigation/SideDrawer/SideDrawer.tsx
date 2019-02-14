@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -8,7 +9,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
@@ -20,6 +20,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 
 import ProfileAvatar from '../../ProfileAvatar/ProfileAvatar'
+import {connect} from "react-redux";
 
 const styles = {
     list: {
@@ -30,7 +31,17 @@ const styles = {
     },
 };
 
-class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
+interface ISideDrawerState {
+    left: boolean;
+    [x: string]: boolean;
+}
+
+interface ISideDrawerProps {
+    classes: any;
+    isAuthenticated: boolean;
+}
+
+class SideDrawer extends React.Component<ISideDrawerProps, ISideDrawerState> {
     state = {
         left: false
     };
@@ -42,11 +53,11 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
     };
 
     render() {
-        const { classes, isAuth } = this.props;
+        const { classes, isAuthenticated } = this.props;
 
         const sideList = (
             <div className={classes.list}>
-                {!isAuth
+                {!isAuthenticated
                     ? <Link to="/auth"><ProfileAvatar />Войти</Link>
                     : <Link to="/logout"><ProfileAvatar />Выйти</Link>
                 }
@@ -59,7 +70,7 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
                             <ListItemText>Поиск автомобилей</ListItemText>
                         </ListItem>
                     </Link>
-                    {isAuth && (
+                    {isAuthenticated && (
                         <ListItem button>
                             <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
                             <Link to="/new-advertisement">
@@ -69,7 +80,7 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
                     )}
                 </List>
                 <Divider />
-                {isAuth && (
+                {isAuthenticated && (
                     <>
                         <List>
                             <Link to="/advertisements">
@@ -148,4 +159,10 @@ class SideDrawer extends React.Component<{classes: any, isAuth: any}> {
     }
 }
 
-export default withStyles(styles)(SideDrawer);
+const mapStateToProps = (state: any) => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+};
+
+export default connect(mapStateToProps, null)(withStyles(styles)(SideDrawer));
