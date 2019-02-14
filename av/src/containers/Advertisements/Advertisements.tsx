@@ -41,7 +41,8 @@ const styles: any = (theme: any) => ({
     },
     root: {
         flexGrow: 1,
-        left: '0'
+        left: '0',
+        marginTop: '100px'
     },
     grow: {
         flexGrow: 1,
@@ -73,7 +74,6 @@ interface IAdvertisementsProps {
         IAdvertisement
     ];
     history: any;
-    filterAdvertisementsByName: any;
 }
 
 interface IAdvertisementsState {
@@ -107,8 +107,8 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
     }
 
     componentDidMount(): void {
-        this.props.onAddedAdverts();
         this.setState({right: true});
+        this.props.onAddedAdverts();
     }
 
 
@@ -128,13 +128,6 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
         if (values.byDirection === 'down') {
             sortedByNumberArray.reverse()
         }
-
-        this.props.filterAdvertisementsByName('asdasd');
-
-        // const filteredAdvertisements = this.props.advertisements.filter((pilot: any, index: any, arr: any) => {
-        //     return pilot.transmission === 'manual'
-        // }).concat((val: any) => val);
-
 
         this.setState({
             showDialogWindow: false
@@ -185,7 +178,6 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
                             </IconButton>
                         </Link>
 
-                        {/*TODO: FILTERS IN COMPONENT*/}
                         <DialogForm
                             showDialogWindow={showDialogWindow}
                             openDialogWindow={this.openDialogWindow}
@@ -297,7 +289,7 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
 
 const mapStateToProps = (state: any) => {
     return {
-        advertisements: state.advertisements.advertisements,
+        advertisements: state.advertisements.advertisements.filter((currentAdvert: any)=>currentAdvert.model.includes(state.filterCars)),
         loading: state.advertisements.loading,
         error: state.advertisements.error
     }
@@ -305,8 +297,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        onAddedAdverts: () => dispatch(actions.getAdvertisements()),
-        filterAdvertisementsByName: (name: string) => dispatch({ type: 'FILTER_ADVERTISEMENTS_BY_NAME', name: name })
+        onAddedAdverts: () => dispatch(actions.getAdvertisements())
     };
 };
 

@@ -28,6 +28,7 @@ const styles = (theme: any) => ({
     },
     card: {
         maxWidth: '100%',
+        width: '100%'
     },
     media: {
         height: 0,
@@ -66,109 +67,107 @@ const FullCarAdvertisement = (props: Interface) => {
     const currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
     return (
-        <div>
+        <>
             {props.fullAdvert.map((advert: any, index: any) => (
-                <div key={index}>
-                    <Card className={classes.card}>
-                        <CardMedia
-                            className={classes.media}
-                            image={advert.image}
-                            title={advert.brand}
-                        />
-                        <CardHeader
-                            title={`${advert.brand} ${advert.model}`}
-                            subheader={currentDate}
-                        />
-                        <CardContent>
-                            <Button variant="contained" color="secondary" className={classes.button}>
-                                {advert.price} руб.
-                            </Button>
-                            {console.log(typeof(advert.price))}
-                            <Button disabled className={classes.button}>
-                                ~ {Math.floor(parseFloat(advert.price ) * 1000 / 2.18 )}
-                            </Button>
-                        </CardContent>
-                        <CardActions className={classes.actions} disableActionSpacing>
-                            <IconButton aria-label="Add to favorites">
-                                <FavoriteIcon />
-                            </IconButton>
-                            <IconButton aria-label="Share">
-                                <ShareIcon />
-                            </IconButton>
-                        </CardActions>
-                        <CardContent>
+                <Card className={classes.card} key={index}>
+                    <CardMedia
+                        className={classes.media}
+                        image={advert.image}
+                        title={advert.brand}
+                    />
+                    <CardHeader
+                        title={`${advert.brand} ${advert.model}`}
+                        subheader={currentDate}
+                    />
+                    <CardContent>
+                        <Button variant="contained" color="secondary" className={classes.button}>
+                            {advert.price} руб.
+                        </Button>
+                        {console.log(typeof(advert.price))}
+                        <Button disabled className={classes.button}>
+                            ~ {Math.floor(parseFloat(advert.price ) * 1000 / 2.18 )}
+                        </Button>
+                    </CardContent>
+                    <CardActions className={classes.actions} disableActionSpacing>
+                        <IconButton aria-label="Add to favorites">
+                            <FavoriteIcon />
+                        </IconButton>
+                        <IconButton aria-label="Share">
+                            <ShareIcon />
+                        </IconButton>
+                    </CardActions>
+                    <CardContent>
 
-                            <List component={'div' as 'ul'} disablePadding>
-                                <ListItem className={classes.nested}>
-                                    <ListItemText>Год выпуска:</ListItemText>
-                                    <ListItemText>{advert.year}</ListItemText>
-                                </ListItem>
-                                <Divider />
-                                <ListItem className={classes.nested}>
-                                    <ListItemText>Пробег:</ListItemText>
-                                    <ListItemText>{advert.dash}</ListItemText>
-                                </ListItem>
-                                <Divider />
-                                <ListItem className={classes.nested}>
-                                    <ListItemText>
-                                        Двигатель:
-                                    </ListItemText>
-                                    <ListItemText>
-                                        {advert.engine}
-                                    </ListItemText>
-                                </ListItem>
-                                <Divider />
-                                <ListItem className={classes.nested}>
-                                    <ListItemText>
-                                        Объем двигателя:
-                                    </ListItemText>
-                                    <ListItemText>
-                                        {advert.volume} см3
-                                    </ListItemText>
-                                </ListItem>
-                                <Divider />
-                                <ListItem className={classes.nested}>
-                                    <ListItemText>
-                                        Тип кузова:
-                                    </ListItemText>
-                                    <ListItemText>
-                                        {advert.body}
-                                    </ListItemText>
-                                </ListItem>
-                                <Divider />
-                                <ListItem className={classes.nested}>
-                                    <ListItemText>
-                                        Коробка передач:
-                                    </ListItemText>
-                                    <ListItemText>
-                                        {advert.transmission}
-                                    </ListItemText>
-                                </ListItem>
-                                <Divider />
-                            </List>
-
-                            <Button variant="outlined" color="secondary" className={classes.buttonFullWidth}>
-                                ПРЕДЛОЖИТЬ ОБМЕН
-                            </Button>
+                        <List component={'div' as 'ul'} disablePadding>
+                            <ListItem className={classes.nested}>
+                                <ListItemText>Год выпуска:</ListItemText>
+                                <ListItemText>{advert.year}</ListItemText>
+                            </ListItem>
                             <Divider />
-
-                            <Typography paragraph className={classes.par}>Комментарий продавца:</Typography>
-                            <Typography paragraph className={classes.par}>
-                                {advert.message}
-                            </Typography>
+                            <ListItem className={classes.nested}>
+                                <ListItemText>Пробег:</ListItemText>
+                                <ListItemText>{advert.dash}</ListItemText>
+                            </ListItem>
                             <Divider />
-                        </CardContent>
-                        <CardContent>
-                            <Typography paragraph className={classes.par}>{advert.city}</Typography>
-                            <Button variant="contained" color="primary" className={classes.buttonFullWidth}>
-                                <MessageIcon />
-                                НАПИСАТЬ СООБЩЕНИЕ
-                            </Button>
-                        </CardContent>
-                    </Card>
-                </div>
+                            <ListItem className={classes.nested}>
+                                <ListItemText>
+                                    Двигатель:
+                                </ListItemText>
+                                <ListItemText>
+                                    {advert.engine}
+                                </ListItemText>
+                            </ListItem>
+                            <Divider />
+                            <ListItem className={classes.nested}>
+                                <ListItemText>
+                                    Объем двигателя:
+                                </ListItemText>
+                                <ListItemText>
+                                    {advert.volume} см3
+                                </ListItemText>
+                            </ListItem>
+                            <Divider />
+                            <ListItem className={classes.nested}>
+                                <ListItemText>
+                                    Тип кузова:
+                                </ListItemText>
+                                <ListItemText>
+                                    {advert.body}
+                                </ListItemText>
+                            </ListItem>
+                            <Divider />
+                            <ListItem className={classes.nested}>
+                                <ListItemText>
+                                    Коробка передач:
+                                </ListItemText>
+                                <ListItemText>
+                                    {advert.transmission}
+                                </ListItemText>
+                            </ListItem>
+                            <Divider />
+                        </List>
+
+                        <Button variant="outlined" color="secondary" className={classes.buttonFullWidth}>
+                            ПРЕДЛОЖИТЬ ОБМЕН
+                        </Button>
+                        <Divider />
+
+                        <Typography paragraph className={classes.par}>Комментарий продавца:</Typography>
+                        <Typography paragraph className={classes.par}>
+                            {advert.message}
+                        </Typography>
+                        <Divider />
+                    </CardContent>
+                    <CardContent>
+                        <Typography paragraph className={classes.par}>{advert.city}</Typography>
+                        <Button variant="contained" color="primary" className={classes.buttonFullWidth}>
+                            <MessageIcon />
+                            НАПИСАТЬ СООБЩЕНИЕ
+                        </Button>
+                    </CardContent>
+                </Card>
             ))}
-        </div>
+        </>
     )
 };
 

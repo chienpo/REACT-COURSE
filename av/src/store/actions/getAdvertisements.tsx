@@ -9,18 +9,18 @@ export const getAdvertisementsStart = () => {
 };
 
 export const getAdvertisementsSuccess = (advertisements: any) => {
-    const fetchedAdvertisements: any = [];
-
-    for (let key in advertisements) {
-        fetchedAdvertisements.push({
-            ...advertisements[key],
-            id: key
-        });
-    }
+    // const fetchedAdvertisements: any = [];
+    //
+    // for (let key in advertisements) {
+    //     fetchedAdvertisements.push({
+    //         ...advertisements[key],
+    //         id: key
+    //     });
+    // }
 
     return {
         type: actionTypes.GET_ADVERTISEMENTS_SUCCESS,
-        advertisements: fetchedAdvertisements
+        advertisements: advertisements
     };
 };
 
@@ -31,6 +31,18 @@ export const getAdvertisementsFail = (error: any) => {
     };
 };
 
+// //filter
+// export const filterAdvertisementsByName = (advertisements: any) => {
+//     advertisements.filter((pilot: any, index: any, arr: any) => {
+//         return pilot.transmission === 'manual'
+//     }).concat((val: any) => val);
+//
+//     return {
+//         type: actionTypes.FILTER_ADVERTISEMENTS_BY_NAME,
+//         advertisements
+//     };
+// };
+
 export const getAdvertisements = () => {
     return (dispatch: any) => {
         dispatch(getAdvertisementsStart());
@@ -39,7 +51,16 @@ export const getAdvertisements = () => {
 
         axios.get(url)
             .then(response => {
-                dispatch(getAdvertisementsSuccess(response.data));
+                const fetchedAdvertisements: any = [];
+
+                for (let key in response.data) {
+                    fetchedAdvertisements.push({
+                        ...response.data[key],
+                        id: key
+                    });
+                }
+
+                dispatch(getAdvertisementsSuccess(fetchedAdvertisements));
             })
             .catch(err => {
                 dispatch(getAdvertisementsFail(err.response.data.error));

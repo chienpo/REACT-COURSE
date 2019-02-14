@@ -21,17 +21,21 @@ const styles: any = (theme: any) => ({
     },
     root: {
         flexGrow: 1,
-        left: '0'
+        left: '0',
+        marginTop: '60px',
+        width: '100%'
     },
     grow: {
         flexGrow: 1,
+        width: '100%'
     },
     paper: {
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary,
         boxShadow: 'none',
-        marginTop: '20px'
+        marginTop: '20px',
+        width: '100%'
     },
     appBarLink: {
         color: 'white',

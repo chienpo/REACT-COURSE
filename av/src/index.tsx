@@ -10,11 +10,13 @@ import './index.css';
 import App from './App';
 import advertisementsReducer from './store/reducers/advertisements';
 import authReducer from './store/reducers/auth';
+import filterReducer from './store/reducers/filterAdvertisements'
 
 
 const rootReduser = combineReducers({
     advertisements: advertisementsReducer,
-    auth: authReducer
+    auth: authReducer,
+    filterCars: filterReducer
 });
 
 const store = createStore(rootReduser, composeWithDevTools(
