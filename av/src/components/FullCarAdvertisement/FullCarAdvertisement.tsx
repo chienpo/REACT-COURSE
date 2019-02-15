@@ -58,6 +58,12 @@ const styles = (theme: any) => ({
         width: '100%',
         paddingTop: 10,
         paddingBottom: 10
+    },
+    messageIco: {
+        marginRight: 10
+    },
+    listItemLabel: {
+        width: 300
     }
 });
 
@@ -85,7 +91,7 @@ const FullCarAdvertisement = (props: Interface) => {
                         </Button>
                         {console.log(typeof(advert.price))}
                         <Button disabled className={classes.button}>
-                            ~ {Math.floor(parseFloat(advert.price ) * 1000 / 2.18 )}
+                            ~ {Math.round(advert.price / 1000) * 500} $
                         </Button>
                     </CardContent>
                     <CardActions className={classes.actions} disableActionSpacing>
@@ -100,17 +106,17 @@ const FullCarAdvertisement = (props: Interface) => {
 
                         <List component={'div' as 'ul'} disablePadding>
                             <ListItem className={classes.nested}>
-                                <ListItemText>Год выпуска:</ListItemText>
+                                <ListItemText className={classes.listItemLabel}>Год выпуска:</ListItemText>
                                 <ListItemText>{advert.year}</ListItemText>
                             </ListItem>
                             <Divider />
                             <ListItem className={classes.nested}>
-                                <ListItemText>Пробег:</ListItemText>
+                                <ListItemText className={classes.listItemLabel}>Пробег:</ListItemText>
                                 <ListItemText>{advert.dash}</ListItemText>
                             </ListItem>
                             <Divider />
                             <ListItem className={classes.nested}>
-                                <ListItemText>
+                                <ListItemText className={classes.listItemLabel}>
                                     Двигатель:
                                 </ListItemText>
                                 <ListItemText>
@@ -119,7 +125,7 @@ const FullCarAdvertisement = (props: Interface) => {
                             </ListItem>
                             <Divider />
                             <ListItem className={classes.nested}>
-                                <ListItemText>
+                                <ListItemText className={classes.listItemLabel}>
                                     Объем двигателя:
                                 </ListItemText>
                                 <ListItemText>
@@ -128,7 +134,7 @@ const FullCarAdvertisement = (props: Interface) => {
                             </ListItem>
                             <Divider />
                             <ListItem className={classes.nested}>
-                                <ListItemText>
+                                <ListItemText className={classes.listItemLabel}>
                                     Тип кузова:
                                 </ListItemText>
                                 <ListItemText>
@@ -137,7 +143,7 @@ const FullCarAdvertisement = (props: Interface) => {
                             </ListItem>
                             <Divider />
                             <ListItem className={classes.nested}>
-                                <ListItemText>
+                                <ListItemText className={classes.listItemLabel}>
                                     Коробка передач:
                                 </ListItemText>
                                 <ListItemText>
@@ -151,8 +157,9 @@ const FullCarAdvertisement = (props: Interface) => {
                             ПРЕДЛОЖИТЬ ОБМЕН
                         </Button>
                         <Divider />
-
-                        <Typography paragraph className={classes.par}>Комментарий продавца:</Typography>
+                        <Typography paragraph className={classes.par} >
+                        </Typography>
+                        <Typography paragraph className={classes.par} >Комментарий продавца:</Typography>
                         <Typography paragraph className={classes.par}>
                             {advert.message}
                         </Typography>
@@ -161,8 +168,7 @@ const FullCarAdvertisement = (props: Interface) => {
                     <CardContent>
                         <Typography paragraph className={classes.par}>{advert.city}</Typography>
                         <Button variant="contained" color="primary" className={classes.buttonFullWidth}>
-                            <MessageIcon />
-                            НАПИСАТЬ СООБЩЕНИЕ
+                            <MessageIcon className={classes.messageIco} /> НАПИСАТЬ СООБЩЕНИЕ
                         </Button>
                     </CardContent>
                 </Card>
