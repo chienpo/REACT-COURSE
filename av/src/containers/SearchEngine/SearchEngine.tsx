@@ -68,8 +68,8 @@ interface ISearchEngineProps {
     advertisements: [IAdvertisement];
     classes: any, onAuth: any, loading: boolean, error: any
     onAddedAdverts: any;
-    filterAdvertisementsByName: any;
-    filterAdvertisementsByYear: any;
+    filterAdvertisementsByCarModel: any;
+    filterAdvertisementsByCarYear: any;
     history: any;
     filter: any;
     isEmpty: any;
@@ -98,8 +98,8 @@ class SearchEngine extends React.Component<ISearchEngineProps, ISearchEngineStat
 
     submitHandler = (values: any) => {
 
-        values.model && this.props.filterAdvertisementsByName(values.model);
-        values.year && this.props.filterAdvertisementsByYear(values.year);
+        values.model && this.props.filterAdvertisementsByCarModel(values.model);
+        values.year && this.props.filterAdvertisementsByCarYear(values.year);
     };
 
     componentDidMount(): void {
@@ -173,7 +173,7 @@ class SearchEngine extends React.Component<ISearchEngineProps, ISearchEngineStat
 const mapStateToProps = (state: any) => {
     return {
         advertisements: state.advertisements.advertisements.filter(
-            (currentAdvert: any)=>currentAdvert.model.includes(state.filterCars.model) && currentAdvert.year.includes(state.filterCarsByYear.year),
+            (currentAdvert: any)=>currentAdvert.model.includes(state.filterCarsByModel.model) && currentAdvert.year.includes(state.filterCarsByYear.year),
         ),
         loading: state.advertisements.loading,
         error: state.advertisements.error
@@ -183,11 +183,10 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         onAddedAdverts: () => dispatch(actions.getAdvertisements()),
-        filterAdvertisementsByName: (name: string) => {
-            console.log(name)
-            dispatch({ type: 'FILTER_ADVERTISEMENTS_BY_NAME', payload: name })
+        filterAdvertisementsByCarModel: (name: string) => {
+            dispatch({ type: 'FILTER_ADVERTISEMENTS_BY_MODEL', payload: name })
         },
-        filterAdvertisementsByYear: (name: string) => {
+        filterAdvertisementsByCarYear: (name: string) => {
             dispatch({ type: 'FILTER_ADVERTISEMENTS_BY_YEAR', payload: name })
         }
     };

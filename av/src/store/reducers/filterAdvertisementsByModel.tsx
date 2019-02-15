@@ -13,7 +13,7 @@ const reducer = (state = initialState, action: any) =>  {
     };
 
     switch (action.type) {
-        case actionTypes.FILTER_ADVERTISEMENTS_BY_NAME: return filterAdvertisements(state, action);
+        case actionTypes.FILTER_ADVERTISEMENTS_BY_MODEL: return filterAdvertisements(state, action);
         default: return state;
     }
 };
