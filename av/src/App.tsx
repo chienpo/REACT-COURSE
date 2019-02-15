@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import SearchEngine from './containers/SearchEngine/SearchEngine'
@@ -47,6 +47,7 @@ class App extends Component<IAppProps, IAppState> {
                 <Route path="/auth" component={Auth} />
                 <Route path="/logout" component={Logout} />
                 <Route path="/advertisements" component={Advertisements} />
+                <Redirect to="/auth" />
             </Switch>
         );
 
