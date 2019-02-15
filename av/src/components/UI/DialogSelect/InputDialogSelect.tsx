@@ -37,6 +37,7 @@ const styles: any = (theme: Theme) => ({
     textField: {
         marginLeft: 0,
         marginRight: 0,
+        background: 'rgba(0, 0, 0, 0.09)'
     },
     form: {
         width: '100%',
@@ -116,7 +117,7 @@ class DialogSelect extends React.Component<IDialogSelectProps, IDialogSelectStat
                                             {...input}
                                             {...customProps}
                                             margin="normal"
-                                            variant="filled"
+                                            variant='outlined'
                                             className={classes.textField}
                                             value={this.state.value}
                                             onClick={this.handleClickOpen}

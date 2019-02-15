@@ -1,5 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import {connect} from "react-redux";
+import { Link } from 'react-router-dom';
 
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -16,11 +18,13 @@ import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import MessageIcon from '@material-ui/icons/Message';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import AvatarIcon from '@material-ui/icons/PersonPin';
 
-import { Link } from 'react-router-dom';
 
-import ProfileAvatar from '../../ProfileAvatar/ProfileAvatar'
-import {connect} from "react-redux";
+import ProfileAvatar from '../../Logos/ProfileAvatar'
+
 
 const styles = {
     list: {
@@ -29,6 +33,26 @@ const styles = {
     fullList: {
         width: 'auto',
     },
+    card: {
+        background: '#1a60ba',
+        color: 'white',
+        borderRadius: '0',
+        padding: '100px 0 5px'
+    },
+    authLink: {
+        color: 'white',
+        underline: 'none'
+    },
+    avatar: {
+        width: '40px',
+        height: '40px',
+        borderRadius: '50%'
+    },
+    avatarContainer: {
+        height: '33px',
+        overflow: 'hidden',
+
+    }
 };
 
 interface ISideDrawerState {
@@ -57,12 +81,28 @@ class SideDrawer extends React.Component<ISideDrawerProps, ISideDrawerState> {
 
         const sideList = (
             <div className={classes.list}>
-                {!isAuthenticated
-                    ? <Link to="/auth"><ProfileAvatar />Войти</Link>
-                    : <Link to="/logout"><ProfileAvatar />Выйти</Link>
-                }
-                <Divider />
-
+                <Card className={classes.card}>
+                    <CardHeader
+                        avatar={isAuthenticated ? (
+                                    <ProfileAvatar />
+                                ) : (
+                                    <div className={classes.avatarContainer}>
+                                        <AvatarIcon className={classes.avatar} />
+                                    </div>
+                                )}
+                        title={isAuthenticated
+                            ? (
+                                <Link className={classes.authLink} to="/logout">
+                                    Выйти
+                                </Link>
+                            ) : (
+                                <Link className={classes.authLink} to="/auth">
+                                  Войти
+                                </Link>
+                            )
+                        }
+                    />
+                </Card>
                 <List>
                     <Link to="/">
                         <ListItem button>

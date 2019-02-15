@@ -23,7 +23,8 @@ const styles: any = (theme: Theme) => ({
         flexWrap: 'wrap',
     },
     formControl: {
-        margin: theme.spacing.unit
+        margin: theme.spacing.unit,
+        display: 'flex'
     },
     formControlLabel: {
         minWidth: 240
@@ -32,8 +33,10 @@ const styles: any = (theme: Theme) => ({
         flexDirection: 'column'
     },
     textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
+        marginLeft: 0,
+        marginRight: 0,
+        background: 'rgba(0, 0, 0, 0.09)',
+        width: '100%'
     },
 });
 
@@ -97,7 +100,7 @@ class DialogSelect extends React.Component<IDialogSelectProps, IDialogSelectStat
                                 {...input}
                                 {...customProps}
                                 margin="normal"
-                                variant="filled"
+                                variant="outlined"
                                 className={classes.textField}
                                 value={this.state.value}
                                 onClick={this.handleClickOpen}

@@ -7,7 +7,8 @@ import Auth from './containers/Auth/Auth'
 import Logout from './containers/Auth/Logout/Logout';
 import NewAdvertisement from "./containers/NewAdvertisement/NewAdvertisement";
 import Advertisements from "./containers/Advertisements/Advertisements";
-import * as actions from './store/actions/index'
+import * as actions from './store/actions/index';
+import LoadAppLogo from './components/Logos/LoadAppLogo'
 
 interface IAppProps {
     children: any;
@@ -15,13 +16,30 @@ interface IAppProps {
     isAuthenticated: boolean;
 }
 
-class App extends Component<IAppProps> {
+interface IAppState {
+  appIsLoading: boolean;
+}
+
+class App extends Component<IAppProps, IAppState> {
+    state = {
+        appIsLoading: true
+    };
+
     componentDidMount() {
         this.props.onTryAutoSignup();
+        this.removeLoadingLogo()
     }
+
+    removeLoadingLogo = () => {
+
+        setTimeout(() => {
+            this.setState({appIsLoading: false});
+            }, 2000);
+    };
   
     render() {
         const { isAuthenticated } = this.props;
+        const { appIsLoading } = this.state;
 
         let routes = (
             <Switch>
@@ -42,6 +60,12 @@ class App extends Component<IAppProps> {
                     <Route path="/advertisements" component={Advertisements} />
                 </Switch>
             );
+        }
+
+        if (appIsLoading) {
+            return (
+                <LoadAppLogo />
+            )
         }
 
         return (

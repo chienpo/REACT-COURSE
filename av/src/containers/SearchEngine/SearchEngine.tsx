@@ -42,13 +42,21 @@ const styles: any = (theme: any) => ({
     drawerPaper: {
         width: '100%',
     },
-    buttonFullWidth: {
+    button: {
         width: '94%',
-        padding: '10px 15px',
+        padding: '0',
         background: '#3dca86',
+        margin: '20px 0',
         fontWeight: 'bold',
+        lineHeight: '1',
+        height: 55,
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: 18,
+        textTransform: 'inherit',
+        paddingTop: 5,
         color: 'white'
-    }
+    },
 });
 
 interface ISearchEngineState {
@@ -99,11 +107,11 @@ class SearchEngine extends React.Component<ISearchEngineProps, ISearchEngineStat
             val = ''
         }
 
-
         this.props.filterAdvertisementsByName(val);
     };
 
     componentDidMount(): void {
+        this.props.onAddedAdverts();
         this.setState({
             right: true,
         })
@@ -153,9 +161,10 @@ class SearchEngine extends React.Component<ISearchEngineProps, ISearchEngineStat
                         />
 
                         <Button
+                            disabled={advertisements && advertisements.length < 1}
                             onClick={this.onClickSearchResult}
                             variant="contained"
-                            className={classes.buttonFullWidth}
+                            className={classes.button}
                         >
                             Показать {advertisements && advertisements.length} авто
                             {loading && (<CircularProgress />)}

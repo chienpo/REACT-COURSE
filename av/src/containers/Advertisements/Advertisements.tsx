@@ -1,17 +1,14 @@
 import React from 'react'
-import {Link, Route} from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Drawer from '@material-ui/core/Drawer';
 import { Form, Field } from 'react-final-form'
 
 import { withStyles } from '@material-ui/core/styles';
-import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import RadioGroup from "@material-ui/core/RadioGroup/RadioGroup";
 import FormControl from "@material-ui/core/FormControl/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import Radio from '@material-ui/core/Radio';
-
-
 
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '../../components/UI/Spinner/CircularProgress'
@@ -64,21 +61,25 @@ const styles: any = (theme: any) => ({
     formRadioGroup: {
         flexDirection: 'column'
     },
+    spinnerWrapper: {
+        height: '80vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });
+
+interface IAdvertisementsState {
+    right: boolean;
+    showDialogWindow: boolean;
+}
 
 interface IAdvertisementsProps {
     classes: any;
     loading: boolean;
     onAddedAdverts: any;
-    advertisements: [
-        IAdvertisement
-    ];
+    advertisements: [IAdvertisement];
     history: any;
-}
-
-interface IAdvertisementsState {
-    right: boolean;
-    showDialogWindow: boolean;
 }
 
 interface IAdvertisement {
@@ -107,8 +108,8 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
     }
 
     componentDidMount(): void {
-        this.setState({right: true});
         this.props.onAddedAdverts();
+        this.setState({right: true});
     }
 
 
@@ -137,20 +138,6 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
     render() {
         const { classes, loading, advertisements, history } = this.props;
         const { showDialogWindow } = this.state;
-
-        if (loading) {
-            return (
-                <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center"
-                >
-                    <CircularProgress />
-                </Grid>
-            )
-        }
 
         return(
             <Drawer
@@ -266,20 +253,26 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
                         </DialogForm>
                     </AppMenu>
 
-                    <Grid
-                        container
-                        spacing={0}
-                        direction="column"
-                        alignItems="center"
-                        justify="center"
-                    >
-                        <Grid item xs={12} sm={12}>
-                            <AdvertisementsList
-                                history={history}
-                                advertisements={advertisements}
-                            />
+                    {loading ? (
+                        <div className={classes.spinnerWrapper}>
+                            <CircularProgress />
+                        </div>
+                    ) : (
+                        <Grid
+                            container
+                            spacing={0}
+                            direction="column"
+                            alignItems="center"
+                            justify="center"
+                        >
+                            <Grid item xs={12} sm={12}>
+                                <AdvertisementsList
+                                    history={history}
+                                    advertisements={advertisements}
+                                />
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    )}
                 </div>
                 <Route path="/advertisements/:id" exact component={FullAdvertisement} />
             </Drawer>

@@ -1,10 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import axios from 'axios'
 
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Radio from '@material-ui/core/Radio';
@@ -34,31 +32,50 @@ import Typography from '@material-ui/core/Typography';
 //FINAL-FORM
 import { Form, Field } from 'react-final-form'
 
-
 const styles: any = (theme: any) => ({
     formControl: {
-        margin: theme.spacing.unit
+        margin: theme.spacing.unit,
+        display: 'flex'
     },
     button: {
-        margin: theme.spacing.unit,
+        width: '99%',
+        padding: '0',
+        background: '#3dca86',
+        margin: '20px auto',
+        fontWeight: 'bold',
+        lineHeight: '1',
+        height: 55,
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: 18,
+        textTransform: 'inherit',
+        paddingTop: 5,
+        color: 'white'
     },
     rightIcon: {
         marginLeft: theme.spacing.unit,
     },
     textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        background: 'rgba(0, 0, 0, 0.09)',
+        width: '100%'
     },
     root: {
         flexGrow: 1,
     },
     paper: {
-        padding: theme.spacing.unit * 2,
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
     grow: {
         flexGrow: 1,
+    },
+    field: {
+        width: '100%'
+    },
+    input: {
+        display: 'none'
     }
 });
 
@@ -126,16 +143,7 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
                         Новое обьявление
                     </Typography>
                 </AppMenu>
-                <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justify="center"
-                >
-
-                    <h1>Новое обьявеие</h1>
-
+                <Grid>
                     <Form
                         onSubmit={this.submitHandler}
                         render={({ handleSubmit, form, submitting, pristine, invalid }) => (
@@ -180,7 +188,7 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
                                             <TextField
                                                 className={classes.textField}
                                                 margin="normal"
-                                                variant="filled"
+                                                variant="outlined"
                                                 {...input}
                                             />
                                             {meta.touched && meta.error && <span>{meta.error}</span>}
@@ -200,7 +208,7 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
                                                 rows="4"
                                                 className={classes.textField}
                                                 margin="normal"
-                                                variant="filled"
+                                                variant="outlined"
                                                 {...input}
                                             />
                                             {meta.touched && meta.error && <span>{meta.error}</span>}
@@ -223,7 +231,7 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
                                 />
                                 <Divider light />
 
-                                <Field name="dash" >
+                                <Field name="dash">
                                     {({ input, meta }) => (
                                         <FormControl className={classes.formControl}>
                                             <InputLabel shrink required>
@@ -232,7 +240,7 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
                                             <TextField
                                                 className={classes.textField}
                                                 margin="normal"
-                                                variant="filled"
+                                                variant="outlined"
                                                 {...input}
                                             />
                                             {meta.touched && meta.error && <span>{meta.error}</span>}
@@ -241,7 +249,7 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
                                 </Field>
                                 <Divider light />
 
-                                <Field name="transmission" type="radio">
+                                <Field name="transmission" type="radio" className={classes.radioSet}>
                                     {({ input, meta }) => (
                                         <FormControl className={classes.formControl}>
                                             <InputLabel shrink required>
@@ -286,6 +294,7 @@ class NewAdvertisement extends React.Component<INewAdvertisementProps, INewAdver
                                             <input
                                                 {...input}
                                                 type="file"
+                                                className={classes.input}
                                                 onChange={
                                                     e => {
                                                         const { onChange } = input;

@@ -49,8 +49,23 @@ const styles: any = (theme: any) => ({
 interface IFullAdvertisementProps {
     classes: any;
     match: any;
-    advertisements: any;
+    advertisements: [IAdvertisement];
     loading: any;
+}
+
+interface IAdvertisement {
+    body: string;
+    brand: string;
+    city: string;
+    dash: string;
+    engine: string;
+    image: string;
+    message: string;
+    model: string;
+    price: string;
+    transmission: string;
+    volume: string;
+    year: string;
 }
 
 interface IFullAdvertisementState {
@@ -59,8 +74,7 @@ interface IFullAdvertisementState {
 
 class FullAdvertisement extends React.Component<IFullAdvertisementProps, IFullAdvertisementState> {
     state = {
-        right: false,
-        loadedFullAdvertisement: []
+        right: false
     };
 
     componentDidMount(): void {
@@ -147,26 +161,3 @@ const mapStateToProps = (state: any) => {
 };
 
 export default connect(mapStateToProps, null)(withStyles(styles)(FullAdvertisement));
-
-
-
-
-
-// if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id) ) {
-//     axios.get( 'https://avto-56119.firebaseio.com/advertisements.json' )
-//         .then( res => {
-//             const fetchedAdvertisements: any = [];
-//
-//             for (let key in res.data) {
-//                 fetchedAdvertisements.push({
-//                     ...res.data[key],
-//                     id: key
-//                 });
-//             }
-//
-//             const currentPost = this.props.advertisements.splice((x: any) => x.id === this.props.match.params.id);
-//
-//     console.log(currentPost)
-//             this.setState( { loadedFullAdvertisement: currentPost } );
-//         } );
-// }

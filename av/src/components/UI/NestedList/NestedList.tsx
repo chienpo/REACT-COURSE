@@ -22,6 +22,9 @@ const styles: any = (theme: any) => ({
     nested: {
         paddingLeft: 16,
     },
+    expandedRow: {
+        padding: '3px 0'
+    }
 });
 
 interface IComponentState { open :  boolean }
@@ -55,7 +58,7 @@ class NestedList extends React.Component<IComponentProps, IComponentState> {
                     </ListItem>
                     <Divider />
                     <ListItem button onClick={this.handleClick}>
-                        <ListItemText primary="Год" />
+                        <ListItemText primary="Год" className={classes.expandedRow} />
                         {this.state.open ? <ArrowDown /> : <ArrowRight />}
                     </ListItem>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
