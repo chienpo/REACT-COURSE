@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b41cc296-86ec-4e1d-a511-d640fed70a95" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/FullCarAdvertisement/FullCarAdvertisement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FullCarAdvertisement/FullCarAdvertisement.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,10 +53,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="FullCarAdvertisement.tsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="FullCarAdvertisement.tsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/FullCarAdvertisement/FullCarAdvertisement.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="434">
+                <state relative-caret-position="1520">
                   <caret line="93" column="68" selection-start-line="93" selection-start-column="68" selection-end-line="93" selection-end-column="68" />
                 </state>
               </provider>
@@ -134,11 +134,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="NewAdvertisement.tsx" pinned="false" current-in-tab="false">
+          <file leaf-file-name="NewAdvertisement.tsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="184">
-                  <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
+                <state relative-caret-position="564">
+                  <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#25#0" expanded="true" />
                   </folding>
@@ -153,7 +153,7 @@
           <file leaf-file-name="getAdvertisements.tsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/store/actions/getAdvertisements.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="440">
+                <state relative-caret-position="426">
                   <caret line="61" selection-start-line="61" selection-end-line="61" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
@@ -266,13 +266,13 @@
         <option value="$PROJECT_DIR$/src/components/UI/NestedList/NestedList.tsx" />
         <option value="$PROJECT_DIR$/src/components/UI/DialogSelect/InputDialogSelect.tsx" />
         <option value="$PROJECT_DIR$/src/components/UI/DialogSelect/DialogSelect.tsx" />
-        <option value="$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx" />
         <option value="$PROJECT_DIR$/src/containers/FullAdvertisement/FullAdvertisement.tsx" />
         <option value="$PROJECT_DIR$/src/containers/Advertisements/Advertisements.tsx" />
         <option value="$PROJECT_DIR$/src/components/Logos/LoadAppLogo.tsx" />
         <option value="$PROJECT_DIR$/src/containers/SearchEngine/SearchEngine.tsx" />
         <option value="$PROJECT_DIR$/src/App.tsx" />
         <option value="$PROJECT_DIR$/src/components/FullCarAdvertisement/FullCarAdvertisement.tsx" />
+        <option value="$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx" />
       </list>
     </option>
   </component>
@@ -490,7 +490,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236504000" />
+    <option name="totallyTimeSpent" value="236647000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
@@ -502,9 +502,9 @@
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.14604236" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.16164994" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24919957" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24919957" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32963374" />
@@ -773,16 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Logos/LoadAppLogo.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -825,7 +815,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/actions/getAdvertisements.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
+        <state relative-caret-position="426">
           <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -885,8 +875,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/FullCarAdvertisement/FullCarAdvertisement.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
+        <state relative-caret-position="1520">
           <caret line="93" column="68" selection-start-line="93" selection-start-column="68" selection-end-line="93" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -63,6 +63,7 @@ const styles: any = (theme: any) => ({
     },
     root: {
         flexGrow: 1,
+        marginTop: 70
     },
     paper: {
         textAlign: 'center',
