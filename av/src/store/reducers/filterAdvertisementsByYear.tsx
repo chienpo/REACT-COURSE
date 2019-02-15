@@ -2,18 +2,18 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
 
 const initialState = {
-    model: '',
+    year: ''
 };
 
 const reducer = (state = initialState, action: any) =>  {
-    const filterAdvertisements = (state: any, action: any) => {
+    const filterAdvertisementsByYear = (state: any, action: any) => {
         return updateObject(state, {
-            model: action.payload
+            year: action.payload
         })
     };
 
     switch (action.type) {
-        case actionTypes.FILTER_ADVERTISEMENTS_BY_NAME: return filterAdvertisements(state, action);
+        case actionTypes.FILTER_ADVERTISEMENTS_BY_YEAR: return filterAdvertisementsByYear(state, action);
         default: return state;
     }
 };

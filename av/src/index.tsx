@@ -11,12 +11,14 @@ import App from './App';
 import advertisementsReducer from './store/reducers/advertisements';
 import authReducer from './store/reducers/auth';
 import filterReducer from './store/reducers/filterAdvertisements'
+import filterByYearReducer from './store/reducers/filterAdvertisementsByYear'
 
 
 const rootReduser = combineReducers({
     advertisements: advertisementsReducer,
     auth: authReducer,
-    filterCars: filterReducer
+    filterCars: filterReducer,
+    filterCarsByYear: filterByYearReducer
 });
 
 const store = createStore(rootReduser, composeWithDevTools(

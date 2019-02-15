@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b41cc296-86ec-4e1d-a511-d640fed70a95" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Advertisements/Advertisements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Advertisements/Advertisements.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/SearchEngine/SearchEngine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/SearchEngine/SearchEngine.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/filterAdvertisements.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/filterAdvertisements.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,14 +31,38 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.87055475">
+    <splitter split-orientation="horizontal" split-proportion="0.8011364">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="auth.tsx" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/store/actions/auth.tsx">
+          <file leaf-file-name="filterAdvertisements.tsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/store/reducers/filterAdvertisements.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="274">
-                  <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+                <state relative-caret-position="400">
+                  <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#0#54#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="filterAdvertisementsByYear.tsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/store/reducers/filterAdvertisementsByYear.tsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="400">
+                  <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#0#54#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/index.tsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="305">
+                  <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
                   <folding>
                     <element signature="e#0#26#0" expanded="true" />
                   </folding>
@@ -62,23 +91,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/index.tsx">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="16" column="18" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#0#26#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="Advertisements.tsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/containers/Advertisements/Advertisements.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="276" column="75" selection-start-line="276" selection-start-column="75" selection-end-line="276" selection-end-column="75" />
+                <state relative-caret-position="350">
+                  <caret line="285" column="89" selection-start-line="285" selection-start-column="89" selection-end-line="285" selection-end-column="89" />
                   <folding>
                     <element signature="e#0#25#0" expanded="true" />
                   </folding>
@@ -86,11 +103,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SearchEngine.tsx" pinned="false" current-in-tab="false">
+          <file leaf-file-name="SearchEngine.tsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/containers/SearchEngine/SearchEngine.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="418">
-                  <caret line="108" selection-start-line="108" selection-end-line="108" />
+                <state relative-caret-position="220">
+                  <caret line="175" column="89" selection-start-line="175" selection-start-column="89" selection-end-line="175" selection-end-column="89" />
                   <folding>
                     <element signature="e#0#25#0" expanded="true" />
                   </folding>
@@ -101,7 +118,7 @@
           <file leaf-file-name="App.tsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/App.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
+                <state relative-caret-position="800">
                   <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
@@ -110,35 +127,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="LoadAppLogo.tsx" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/Logos/LoadAppLogo.tsx">
+          <file leaf-file-name="actionTypes.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/store/actions/actionTypes.ts">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="200">
-                  <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#0#26#0" expanded="true" />
-                  </folding>
+                  <caret line="10" column="77" lean-forward="true" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="auth.tsx" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/store/reducers/auth.tsx">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-                  <folding>
-                    <element signature="e#0#54#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="NewAdvertisement.tsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="NewAdvertisement.tsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="564">
-                  <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+                <state relative-caret-position="424">
+                  <caret line="118" column="25" lean-forward="true" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
                   <folding>
                     <element signature="e#0#25#0" expanded="true" />
                   </folding>
@@ -150,7 +152,7 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="getAdvertisements.tsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="getAdvertisements.tsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/store/actions/getAdvertisements.tsx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="426">
@@ -162,11 +164,23 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="advertisements.tsx" pinned="false" current-in-tab="false">
+          <file leaf-file-name="advertisements.tsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/store/reducers/advertisements.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="458">
-                  <caret line="35" column="93" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="93" />
+                <state relative-caret-position="200">
+                  <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="13" selection-end-column="6" />
+                  <folding>
+                    <element signature="e#0#54#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="auth.tsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/store/reducers/auth.tsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="320">
+                  <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
                   <folding>
                     <element signature="e#0#54#0" expanded="true" />
                   </folding>
@@ -222,7 +236,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/Filter/Filter.tsx" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/src/store/utility.tsx" />
         <option value="$PROJECT_DIR$/src/components/Navigation/SideDrawer/AutnSideDrawer.tsx" />
@@ -248,13 +261,10 @@
         <option value="$PROJECT_DIR$/src/components/UI/DialogSelect/select-lists.tsx" />
         <option value="$PROJECT_DIR$/src/components/UI/DialogForm/DialogForm.tsx" />
         <option value="$PROJECT_DIR$/src/store/actions/filterAdvertisements.tsx" />
-        <option value="$PROJECT_DIR$/src/store/actions/actionTypes.ts" />
         <option value="$PROJECT_DIR$/src/store/reducers/filterCars.tsx" />
         <option value="$PROJECT_DIR$/src/store/actions/getAdvertisements.tsx" />
         <option value="$PROJECT_DIR$/src/store/reducers/advertisements.tsx" />
-        <option value="$PROJECT_DIR$/src/store/reducers/filterAdvertisements.tsx" />
         <option value="$PROJECT_DIR$/src/hoc/Layout/Layout.tsx" />
-        <option value="$PROJECT_DIR$/src/index.tsx" />
         <option value="$PROJECT_DIR$/src/store/actions/auth.tsx" />
         <option value="$PROJECT_DIR$/src/store/actions/index.tsx" />
         <option value="$PROJECT_DIR$/src/components/AdvertisementsList/AdvertisementsList.tsx" />
@@ -267,12 +277,16 @@
         <option value="$PROJECT_DIR$/src/components/UI/DialogSelect/InputDialogSelect.tsx" />
         <option value="$PROJECT_DIR$/src/components/UI/DialogSelect/DialogSelect.tsx" />
         <option value="$PROJECT_DIR$/src/containers/FullAdvertisement/FullAdvertisement.tsx" />
-        <option value="$PROJECT_DIR$/src/containers/Advertisements/Advertisements.tsx" />
         <option value="$PROJECT_DIR$/src/components/Logos/LoadAppLogo.tsx" />
-        <option value="$PROJECT_DIR$/src/containers/SearchEngine/SearchEngine.tsx" />
         <option value="$PROJECT_DIR$/src/App.tsx" />
         <option value="$PROJECT_DIR$/src/components/FullCarAdvertisement/FullCarAdvertisement.tsx" />
         <option value="$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx" />
+        <option value="$PROJECT_DIR$/src/store/actions/actionTypes.ts" />
+        <option value="$PROJECT_DIR$/src/store/reducers/filterAdvertisements.tsx" />
+        <option value="$PROJECT_DIR$/src/index.tsx" />
+        <option value="$PROJECT_DIR$/src/store/reducers/filterAdvertisementsByYear.tsx" />
+        <option value="$PROJECT_DIR$/src/containers/Advertisements/Advertisements.tsx" />
+        <option value="$PROJECT_DIR$/src/containers/SearchEngine/SearchEngine.tsx" />
       </list>
     </option>
   </component>
@@ -490,7 +504,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236647000" />
+    <option name="totallyTimeSpent" value="238685000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
@@ -502,9 +516,9 @@
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.16164994" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.16164994" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24919957" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24866596" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32963374" />
@@ -541,13 +555,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/@material-ui/core/CircularProgress/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="23" lean-forward="true" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/UI/Spinner/CircularProgress.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -606,9 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="20" column="2" lean-forward="true" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -642,13 +646,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/actions/filterAdvertisements.tsx" />
-    <entry file="file://$PROJECT_DIR$/src/store/actions/actionTypes.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/UI/DialogForm/DialogForm.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -667,13 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="62" selection-start-column="45" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/filterAdvertisements.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="24" lean-forward="true" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -737,9 +727,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="67" column="36" lean-forward="true" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -747,9 +734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-804">
           <caret line="19" column="12" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -767,9 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -783,52 +764,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/SearchEngine/SearchEngine.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/advertisements.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="35" column="93" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="93" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/actions/getAdvertisements.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
           <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/auth.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -845,20 +786,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
+        <state relative-caret-position="800">
           <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Advertisements/Advertisements.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="276" column="75" selection-start-line="276" selection-start-column="75" selection-end-line="276" selection-end-column="75" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -882,8 +813,85 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/NewAdvertisement/NewAdvertisement.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+        <state relative-caret-position="424">
+          <caret line="118" column="25" lean-forward="true" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions/actionTypes.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="77" lean-forward="true" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/filterAdvertisements.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/auth.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/advertisements.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="13" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/filterAdvertisementsByYear.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Advertisements/Advertisements.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="285" column="89" selection-start-line="285" selection-start-column="89" selection-end-line="285" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/SearchEngine/SearchEngine.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="175" column="89" selection-start-line="175" selection-start-column="89" selection-end-line="175" selection-end-column="89" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>

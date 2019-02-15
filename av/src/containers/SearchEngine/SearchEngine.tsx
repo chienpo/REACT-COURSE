@@ -69,6 +69,7 @@ interface ISearchEngineProps {
     classes: any, onAuth: any, loading: boolean, error: any
     onAddedAdverts: any;
     filterAdvertisementsByName: any;
+    filterAdvertisementsByYear: any;
     history: any;
     filter: any;
     isEmpty: any;
@@ -96,18 +97,9 @@ class SearchEngine extends React.Component<ISearchEngineProps, ISearchEngineStat
     };
 
     submitHandler = (values: any) => {
-        this.props.onAddedAdverts();
 
-        const params = Object.entries(values).reduce((result, [field, value]) => {
-                 return value
-            }, {});
-
-        let val = params;
-        if (Object.entries(params).length === 0) {
-            val = ''
-        }
-
-        this.props.filterAdvertisementsByName(val);
+        values.model && this.props.filterAdvertisementsByName(values.model);
+        values.year && this.props.filterAdvertisementsByYear(values.year);
     };
 
     componentDidMount(): void {
@@ -180,7 +172,9 @@ class SearchEngine extends React.Component<ISearchEngineProps, ISearchEngineStat
 
 const mapStateToProps = (state: any) => {
     return {
-        advertisements: state.advertisements.advertisements.filter((currentAdvert: any)=>currentAdvert.model.includes(state.filterCars)),
+        advertisements: state.advertisements.advertisements.filter(
+            (currentAdvert: any)=>currentAdvert.model.includes(state.filterCars.model) && currentAdvert.year.includes(state.filterCarsByYear.year),
+        ),
         loading: state.advertisements.loading,
         error: state.advertisements.error
     }
@@ -190,7 +184,11 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         onAddedAdverts: () => dispatch(actions.getAdvertisements()),
         filterAdvertisementsByName: (name: string) => {
+            console.log(name)
             dispatch({ type: 'FILTER_ADVERTISEMENTS_BY_NAME', payload: name })
+        },
+        filterAdvertisementsByYear: (name: string) => {
+            dispatch({ type: 'FILTER_ADVERTISEMENTS_BY_YEAR', payload: name })
         }
     };
 };

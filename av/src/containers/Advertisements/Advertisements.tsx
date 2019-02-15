@@ -282,7 +282,9 @@ class Advertisements extends React.Component<IAdvertisementsProps, IAdvertisemen
 
 const mapStateToProps = (state: any) => {
     return {
-        advertisements: state.advertisements.advertisements.filter((currentAdvert: any)=>currentAdvert.model.includes(state.filterCars)),
+        advertisements: state.advertisements.advertisements.filter(
+            (currentAdvert: any)=>currentAdvert.model.includes(state.filterCars.model) && currentAdvert.year.includes(state.filterCarsByYear.year),
+        ),
         loading: state.advertisements.loading,
         error: state.advertisements.error
     }
